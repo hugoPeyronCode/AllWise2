@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct Allwise2App: App {
+    
+    var vm = AppViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
+                .environmentObject(vm)
         }
     }
 }

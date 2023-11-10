@@ -28,7 +28,7 @@ let mockData = [
                 },
                 isSolved: false
             )
-        }, isSolved: false)
+        }, isSolved: false, state: .current)
     }),
     Lesson(name: "L2", image: "📗", topics: (1...10).map { topicIndex in
         Topic(name: "L2 T\(topicIndex)", subtopics: (1...5).map { subTopicIndex in
@@ -50,7 +50,7 @@ let mockData = [
                 },
                 isSolved: false
             )
-        }, isSolved: false)
+        }, isSolved: false, state: .current)
     }),
     Lesson(name: "L3", image: "📙", topics: (1...10).map { topicIndex in
         Topic(name: "L3 T\(topicIndex)", subtopics: (1...5).map { subTopicIndex in
@@ -72,6 +72,6 @@ let mockData = [
                 },
                 isSolved: false
             )
-        }, isSolved: false)
+        }, isSolved: false, state: .current)
     })
 ]

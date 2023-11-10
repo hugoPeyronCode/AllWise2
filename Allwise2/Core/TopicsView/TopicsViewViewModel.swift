@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+class TopicsViewViewModel : ObservableObject {
+    // Ici je veux une fonction qui scan an array de topic et qui 
+}

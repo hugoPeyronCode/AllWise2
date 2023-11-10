@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CustomProgressBar: View {
     // The progress variable should be between 0 and 1
-    var progress: CGFloat
+    var progress: Float
 
     var body: some View {
         GeometryReader { geometry in
@@ -18,15 +18,15 @@ struct CustomProgressBar: View {
                     .foregroundColor(Color.gray.opacity(0.2)) // Background of the progress bar
 
                 RoundedRectangle(cornerRadius: geometry.size.height / 2)
-                    .frame(width: geometry.size.width * progress)
+                    .frame(width: geometry.size.width * CGFloat(progress))
                     .foregroundColor(Color.green) // Foreground indicating progress
                     .animation(.linear, value: progress)
             }
         }
-        .frame(height: 20) // Set the height of the progress bar
+        .frame(maxWidth: .infinity, maxHeight: 10)
     }
 }
 
 #Preview {
-    CustomProgressBar()
+    CustomProgressBar(progress: 0.5)
 }
