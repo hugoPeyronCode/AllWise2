@@ -13,11 +13,11 @@ struct SubTopicView: View {
     
     @State private var triggerQuitAlert: Bool = false
     
-    @State private var isAnswerSelected: Bool = false
+    @State var questionViewResult : Bool?
     
     @Environment(\.dismiss) private var dismiss
     
-    // Computed property to calculate progress
+    // Computed property to calculate progress. To move to a viewModel.
     private var subTopicProgress: Float {
         let totalQuestions = subTopic.questions.count
         let solvedQuestions = subTopic.questions.filter { $0.isSolved }.count
@@ -29,15 +29,14 @@ struct SubTopicView: View {
         NavigationStack {
             VStack {
                 if let firstQuestion = subTopic.questions.first {
-                    QuestionView(question: firstQuestion)
+                    QuestionView(question: firstQuestion, result: $questionViewResult)
                         .environmentObject(vm)
                 } else {
                     ProgressView()
                 }
                 
-                answerValidationButton(isActive: $isAnswerSelected) {
-//                    vm.checkAnswer()
-                }
+                Text("Answer is correct: \(questionViewResult.debugDescription)")
+
             }
             .toolbar {
                 
@@ -83,27 +82,3 @@ struct SubTopicView: View {
         .environmentObject(AppViewModel())
 }
 
-
-struct answerValidationButton : View {
-    
-    // The button is active when at one answer is selected.
-    @Binding var isActive : Bool
-    @State var action : () -> Void
-    
-    var body: some View {
-        Button {
-            action()
-        } label: {
-            Text("Check")
-                .frame(maxWidth: .infinity, minHeight: 50)
-                .foregroundStyle(isActive ? .white : .gray)
-                .font(.title)
-                .bold()
-                .fontDesign(.rounded)
-                .background(isActive ? .green : .gray.opacity(0.3))
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .padding()
-        }
-        .disabled(!isActive)
-    }
-}
