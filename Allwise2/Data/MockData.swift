@@ -9,10 +9,10 @@ import Foundation
 
 let mockData = [
     Lesson(name: "L1", image: "📘", topics: (1...10).map { topicIndex in
-        Topic(name: "L1 T\(topicIndex)", subtopics: (1...5).map { subTopicIndex in
+        Topic(name: "L1 T\(topicIndex)", subtopics: (1...2).map { subTopicIndex in
             SubTopic(
                 name: "L1 T\(topicIndex) ST\(subTopicIndex)",
-                questions: (1...12).map { questionIndex in
+                questions: (1...3).map { questionIndex in
                     Question(
                         question: "L1 T\(topicIndex) ST\(subTopicIndex) Q\(questionIndex)",
                         explanation: "Explanation for L1 T\(topicIndex) ST\(subTopicIndex) Q\(questionIndex)",
@@ -34,7 +34,7 @@ let mockData = [
         Topic(name: "L2 T\(topicIndex)", subtopics: (1...5).map { subTopicIndex in
             SubTopic(
                 name: "L2 T\(topicIndex) ST\(subTopicIndex)",
-                questions: (1...12).map { questionIndex in
+                questions: (1...3).map { questionIndex in
                     Question(
                         question: "L2 T\(topicIndex) ST\(subTopicIndex) Q\(questionIndex)",
                         explanation: "Explanation for L2 T\(topicIndex) ST\(subTopicIndex) Q\(questionIndex)",
@@ -56,7 +56,7 @@ let mockData = [
         Topic(name: "L3 T\(topicIndex)", subtopics: (1...5).map { subTopicIndex in
             SubTopic(
                 name: "L3 T\(topicIndex) ST\(subTopicIndex)",
-                questions: (1...12).map { questionIndex in
+                questions: (1...3).map { questionIndex in
                     Question(
                         question: "L3 T\(topicIndex) ST\(subTopicIndex) Q\(questionIndex)",
                         explanation: "Explanation for L3 T\(topicIndex) ST\(subTopicIndex) Q\(questionIndex)",

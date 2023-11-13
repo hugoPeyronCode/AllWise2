@@ -8,47 +8,52 @@
 import SwiftUI
 
 struct SubTopicView: View {
-    @EnvironmentObject var vm: AppViewModel
-    let subTopic: SubTopic
-    
-    @State private var triggerQuitAlert: Bool = false
-    
-    @State var questionViewResult : Bool?
-    
+    @EnvironmentObject var vm : AppViewModel
+    @StateObject var localVM : SubTopicViewModel
     @Environment(\.dismiss) private var dismiss
     
-    // Computed property to calculate progress. To move to a viewModel.
-    private var subTopicProgress: Float {
-        let totalQuestions = subTopic.questions.count
-        let solvedQuestions = subTopic.questions.filter { $0.isSolved }.count
-        // Avoid division by zero
-        return totalQuestions > 0 ? Float(solvedQuestions) / Float(totalQuestions) : 0
+    var onComplete: (Bool) -> Void
+    @State private var backToTopicView = false
+
+    init(subTopic: SubTopic, onComplete: @escaping (Bool) -> Void) {
+        _localVM = StateObject(wrappedValue: SubTopicViewModel(subTopic: subTopic))
+        self.onComplete = onComplete
     }
+
     
     var body: some View {
         NavigationStack {
-            VStack {
-                if let firstQuestion = subTopic.questions.first {
-                    QuestionView(question: firstQuestion, result: $questionViewResult)
-                        .environmentObject(vm)
-                } else {
-                    ProgressView()
+            GeometryReader { screen in
+                VStack {
+                    Text("Total question Count: \(localVM.subTopic.questions.count + localVM.errorQuestions.count)")
+                    Text("Total error Count: \(localVM.errorQuestions.count)")
+                    Text("Answered Question: \(localVM.answeredQuestionsCount)")
+                    Text("Progress: \(localVM.subTopicProgress)")
+                    QuestionView(question: localVM.currentQuestion,
+                                 result: $localVM.questionViewResult,
+                                 action1: { localVM.checkResult(for: localVM.currentQuestion)},
+                                 action2: localVM.moveToNextQuestion)
+                                .environmentObject(vm)
                 }
-                
-                Text("Answer is correct: \(questionViewResult.debugDescription)")
-
+            }
+            .sheet(isPresented: $localVM.triggerErrorsView, content: {
+                Text("Error view")
+            })
+            .fullScreenCover(isPresented: $localVM.triggerResultView) {
+                Text("Back to topic View")
+                    .onTapGesture {
+                        onComplete(true) // Call the completion handler with true
+                        dismiss()       // Dismiss the view to go back
+                    }
             }
             .toolbar {
-                
                 ToolbarItem(placement: .topBarLeading) {
                     XMark
                 }
-                
                 ToolbarItem(placement: .principal) {
-                    CustomProgressBar(progress: subTopicProgress)
-                        .frame(width: 240)
+                    CustomProgressBar(progress: localVM.subTopicProgress)
+                        .frame(width: 240, height: 10)
                 }
-                
                 ToolbarItem(placement: .topBarTrailing) {
                     HStack {
                         Text("❤️")
@@ -56,18 +61,18 @@ struct SubTopicView: View {
                     }
                 }
             }
-            
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden()
-            .alert("Are you sure you want to quit?", isPresented: $triggerQuitAlert) {
+            .alert("Are you sure you want to quit?", isPresented: $localVM.triggerQuitAlert) {
                 Button("Quit", role: .destructive) { dismiss() }
                 Button("Continue", role: .cancel) { }
-        }
+            }
         }
     }
     
     var XMark: some View {
         Button {
-            triggerQuitAlert.toggle()
+            localVM.triggerQuitAlert.toggle()
         } label: {
             Image(systemName: "xmark")
                 .foregroundColor(.gray)
@@ -76,9 +81,25 @@ struct SubTopicView: View {
         }
     }
 }
-
 #Preview {
-    SubTopicView(subTopic: SubTopic(name: "Test", questions: [], isSolved: false))
-        .environmentObject(AppViewModel())
+    SubTopicView(subTopic: SubTopic(name: "1",
+                                    questions:
+                                        [
+                                            Question(question: "Question 1", explanation: "", answers: [
+                                                Answer(text: "Bonne réponse", isTrue: true),
+                                                Answer(text: "Mauvaise réponse", isTrue: false),
+                                                Answer(text: "Mauvaise réponse", isTrue: false),
+                                                Answer(text: "Mauvaise réponse", isTrue: false)
+                                            ],
+                                                     isSolved: false, type: .choice),
+                                            Question(question: "Question 2", explanation: "", answers: [
+                                                Answer(text: "Bonne réponse", isTrue: true),
+                                                Answer(text: "Mauvaise réponse", isTrue: false),
+                                                Answer(text: "Mauvaise réponse", isTrue: false),
+                                                Answer(text: "Mauvaise réponse", isTrue: false)
+                                            ],
+                                                     isSolved: false, type: .duo)
+                                        ],
+                                    isSolved: false), onComplete: {_ in })
+    .environmentObject(AppViewModel())
 }
-

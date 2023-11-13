@@ -17,23 +17,13 @@ enum QuestionState {
 struct QuestionView: View {
     
     @EnvironmentObject var vm: AppViewModel
+    @StateObject var localVM = QuestionViewModel()
     
     let question : Question
     
-    @State private var selectedAnswers : [Answer] = []
-    
-    @State private var questionState : QuestionState = .isNeutral
-    
-    @Binding var result : Bool?
-    
-    @State private var isMoveToNextPageButtonAppears: Bool = false
-    
-    var action1 : () -> Void // CheckResult
+    @Binding var result : Bool? // Send the result of the question back to the subTopicView
+    @State var action1 : () -> Void // CheckResult
     var action2: () -> Void // MoveToNextQuestion
-    
-    private var isValidationButtonActive: Bool {
-          !selectedAnswers.isEmpty
-      }
     
     var body: some View {
         VStack {
@@ -42,26 +32,32 @@ struct QuestionView: View {
             ForEach(question.answers, id: \.id) { answer in
                 answerButton(for: answer)
             }
-            .disabled(isValidationButtonActive)
+            .disabled(localVM.questionState == .isValid || localVM.questionState == .isWrong)
             
             HStack {
-                ValidationButton(isActive: isValidationButtonActive) {
+                ValidationButton(isActive: localVM.isAnswersArrayContainsSomething(for: localVM.selectedAnswers)) {
                     LocalCheckResult()
-                    isMoveToNextPageButtonAppears = true
+                    localVM.isMoveToNextPageButtonAppears = true
                 }
                 
-                if isMoveToNextPageButtonAppears {
+                if localVM.isMoveToNextPageButtonAppears {
                     MoveToNextQuestionButton
                 }
             }
-            
-            Text("\(result.debugDescription)")
+        }
+        .onAppear {
+            print("question view appears")
         }
     }
     
     var MoveToNextQuestionButton : some View {
         Button {
-            action2()
+            withAnimation(.bouncy) {
+                localVM.selectedAnswers.removeAll()
+                localVM.questionState = .isNeutral
+                localVM.isMoveToNextPageButtonAppears = false
+                action2()
+            }
         } label: {
             Image(systemName: "chevron.right")
                 .font(.title)
@@ -76,26 +72,27 @@ struct QuestionView: View {
     }
     
     private func LocalCheckResult() {
-        if selectedAnswers.first?.isTrue == true {
-            questionState = .isValid
+        if localVM.selectedAnswers.first?.isTrue == true {
+            vm.markQuestionAsSolved(for: question.id)
+            localVM.questionState = .isValid
             result = true
             withAnimation(.bouncy) {
                 action1()
             }
         } else {
-            questionState = .isWrong
+            localVM.questionState = .isWrong
             result = false
-            withAnimation(.snappy) {
+            withAnimation(.bouncy) {
                 action1()
             }
         }
     }
     
     private func answerButton(for answer: Answer) -> some View {
-        SingleSelectButton(answer: answer, selectedAnswers: $selectedAnswers, questionState: $questionState) {
-            questionState = .isSelected
-            selectedAnswers.removeAll()
-            selectedAnswers.append(answer)
+        SingleSelectButton(answer: answer, selectedAnswers: $localVM.selectedAnswers, questionState: $localVM.questionState) {
+            localVM.questionState = .isSelected
+            localVM.selectedAnswers.removeAll()
+            localVM.selectedAnswers.append(answer)
         }
     }
     
@@ -106,7 +103,7 @@ struct QuestionView: View {
                 .fontDesign(.rounded)
                 .multilineTextAlignment(.center)
                 .padding()
-                .frame(maxWidth: .infinity, minHeight: 300)
+                .frame(maxWidth: .infinity, maxHeight: 300)
                 .background(RoundedRectangle(cornerRadius: 25)
                     .stroke(Color.black, lineWidth: 2)
                     .background(RoundedRectangle(cornerRadius: 15).fill(.thinMaterial)))
@@ -117,7 +114,7 @@ struct QuestionView: View {
 
 #Preview {
     QuestionView(question: Question(
-        question: "Quel est la couleur du cheval blanc d'Henri IV ?",
+        question: "Quelle est la couleur du cheval blanc d'Henri IV ?",
         explanation: "La réponse est dans la question",
         answers: [
             Answer(text: "Blanc", isTrue: true),
@@ -155,14 +152,16 @@ struct SingleSelectButton : View {
                         .fontDesign(.rounded)
                         .fontWeight(.bold)
                 }
-                .frame(width: 350, height: 60)
+                .frame(maxWidth: 350, maxHeight: 50)
                 .padding(.horizontal)
         }
     }
+    // Handle selection of the button
     func isSelected() -> Bool {
         selectedAnswers.contains { $0.id == answer.id }
     }
     
+    // Handle color of the button according to state
     func color(questionState: QuestionState) -> Color {
         switch questionState {
         case .isSelected:
@@ -189,7 +188,7 @@ struct ValidationButton : View {
             action()
         } label: {
             Text("Check")
-                .frame(maxWidth: .infinity, minHeight: 50)
+                .frame(maxWidth: .infinity, maxHeight: 60)
                 .foregroundStyle(isActive ? .white : .gray)
                 .font(.title)
                 .bold()

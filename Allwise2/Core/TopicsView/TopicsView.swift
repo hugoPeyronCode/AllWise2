@@ -18,7 +18,7 @@ struct TopicsView: View {
     @State private var isNavToSubTopicView = false
     
     var body: some View {
-        
+
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(spacing: 30) {
                 ForEach(vm.topics, id: \.id) { topic in
@@ -31,13 +31,17 @@ struct TopicsView: View {
             }
             .navigationDestination(isPresented: $isNavToSubTopicView) {
                 if let subTopicToNavigate = selectedSubTopic {
-                    SubTopicView(subTopic: subTopicToNavigate)
-                        .environmentObject(vm)
+                    SubTopicView(subTopic: subTopicToNavigate) { result in
+                        if result == true {
+                            vm.updateTopicsState()
+                        }
+                    }
+                    .environmentObject(vm)
                 }
             }
         }
         .onAppear{
-            // Make the last not solved topic state to current
+            // Make the last not solved topic state to current and update it's progression
             vm.updateTopicsState()
             print("view appears")
         }

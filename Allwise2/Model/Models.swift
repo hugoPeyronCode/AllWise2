@@ -7,12 +7,6 @@
 
 import Foundation
 
-enum QuestionType {
-    case duo
-    case choice
-    case cash
-}
-
 struct Answer: Identifiable {
     let id = UUID()
     let text: String
@@ -26,6 +20,12 @@ struct Question: Identifiable {
     let answers: [Answer]
     var isSolved: Bool
     let type: QuestionType
+        
+    enum QuestionType {
+        case duo
+        case choice
+        case cash
+    }
 }
 
 struct SubTopic: Identifiable {
@@ -41,6 +41,13 @@ struct Topic: Identifiable {
     var subtopics: [SubTopic]
     var isSolved: Bool
     var state : TopicState
+    
+    enum TopicState {
+        case current
+        case isLocked
+        case isValidated
+    }
+
 }
 
 struct Lesson: Identifiable {
@@ -50,8 +57,3 @@ struct Lesson: Identifiable {
     var topics: [Topic]
 }
 
-enum TopicState {
-    case current
-    case isLocked
-    case isValidated
-}

@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct TopicButton: View {
+    
+    @EnvironmentObject var vm : AppViewModel
+    
     var topic: Topic
+    
+    var progress: Double { calculateProgress() }
+    
     @State var action : () -> Void
-    
-    @State var progress : Double = 0.0
-    
+        
     var body: some View {
         Button {
             action()
@@ -31,30 +35,24 @@ struct TopicButton: View {
                     .shadow(color: .blue.opacity(0.5), radius: 5)
             }
             .frame(width: 70, height: 70)
-            .onAppear {
-                updateProgress()
+        }
+        .onAppear{
+            if progress == 1 {
+                vm.markTopicAsSolved(topic.id)
             }
         }
     }
+
     
-    func updateProgress()  {
-        switch topic.state {
-        case .current:
-            progress = calculateProgess()
-        case .isLocked:
-            progress = 0
-        case .isValidated:
-            progress = 1
-        }
-        
-        func calculateProgess() -> Double {
-            let totalSubtopics = Double(topic.subtopics.count)
-            let solvedSubtopics = Double(topic.subtopics.filter { $0.isSolved }.count)
-            return solvedSubtopics / totalSubtopics
-        }
+    func calculateProgress() -> Double {
+        let totalSubtopics = Double(topic.subtopics.count)
+        let solvedSubtopics = Double(topic.subtopics.filter { $0.isSolved }.count)
+        return solvedSubtopics / totalSubtopics
     }
+ 
 }
 
 #Preview {
     TopicButton(topic: Topic(name: "", subtopics: [], isSolved: true, state: .isLocked), action: {})
+        .environmentObject(AppViewModel())
 }
