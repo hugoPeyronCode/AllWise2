@@ -8,7 +8,15 @@
 import Foundation
 import SwiftUI
 
+enum SubTopicViewState {
+    case triggerErrorView
+    case triggerResultView
+    case triggerQuestionView
+}
+
 class SubTopicViewModel : ObservableObject {
+    
+    @Published var subtopicViewState : SubTopicViewState = .triggerQuestionView
      
     @Published var subTopic: SubTopic
     @Published var questionViewResult : Bool? // Get the result from the question view.
@@ -37,23 +45,31 @@ class SubTopicViewModel : ObservableObject {
     
     func moveToNextQuestion() {
         updateProgress()
-        
+
         if currentQuestionIndex < pendingQuestions.count - 1 {
-            currentQuestionIndex += 1
+            // Move to the next question in the pendingQuestions array
+            withAnimation(.bouncy){
+                currentQuestionIndex += 1
+            }
         } else {
-            // All questions have been attempted once
+            // Finished the current batch of questions
             if !errorQuestions.isEmpty {
-                // Start over with the incorrectly answered questions
-                triggerErrorsView = true
-                pendingQuestions = errorQuestions
-                errorQuestions.removeAll()
-                currentQuestionIndex = 0
+                // There are error questions to display
+                withAnimation(.snappy) {
+                    subtopicViewState = .triggerErrorView
+                    pendingQuestions = errorQuestions
+                    errorQuestions.removeAll()
+                    currentQuestionIndex = 0
+                }
             } else {
-                // All questions answered correctly, trigger result view
-                triggerResultView = true
+                // No error questions, all questions answered correctly
+                withAnimation(.snappy) {
+                    subtopicViewState = .triggerResultView
+                }
             }
         }
     }
+
 
     func checkResult(for question: Question) {
                         

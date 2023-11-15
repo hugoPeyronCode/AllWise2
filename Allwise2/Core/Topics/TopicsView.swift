@@ -43,7 +43,6 @@ struct TopicsView: View {
         .onAppear{
             // Make the last not solved topic state to current and update it's progression
             vm.updateTopicsState()
-            print("view appears")
         }
     }
 }

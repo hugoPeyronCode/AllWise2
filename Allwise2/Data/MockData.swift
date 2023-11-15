@@ -14,7 +14,7 @@ let mockData = [
                 name: "L1 T\(topicIndex) ST\(subTopicIndex)",
                 questions: (1...3).map { questionIndex in
                     Question(
-                        question: "L1 T\(topicIndex) ST\(subTopicIndex) Q\(questionIndex)",
+                        question: "L1 T\(topicIndex) ST\(subTopicIndex) Q\(questionIndex)", image: "",
                         explanation: "Explanation for L1 T\(topicIndex) ST\(subTopicIndex) Q\(questionIndex)",
                         answers: [
                             Answer(text: "Answer A", isTrue: true),
@@ -36,7 +36,7 @@ let mockData = [
                 name: "L2 T\(topicIndex) ST\(subTopicIndex)",
                 questions: (1...3).map { questionIndex in
                     Question(
-                        question: "L2 T\(topicIndex) ST\(subTopicIndex) Q\(questionIndex)",
+                        question: "L2 T\(topicIndex) ST\(subTopicIndex) Q\(questionIndex)", image: "",
                         explanation: "Explanation for L2 T\(topicIndex) ST\(subTopicIndex) Q\(questionIndex)",
                         answers: [
                             Answer(text: "Answer A", isTrue: true),
@@ -58,7 +58,7 @@ let mockData = [
                 name: "L3 T\(topicIndex) ST\(subTopicIndex)",
                 questions: (1...3).map { questionIndex in
                     Question(
-                        question: "L3 T\(topicIndex) ST\(subTopicIndex) Q\(questionIndex)",
+                        question: "L3 T\(topicIndex) ST\(subTopicIndex) Q\(questionIndex)", image: "",
                         explanation: "Explanation for L3 T\(topicIndex) ST\(subTopicIndex) Q\(questionIndex)",
                         answers: [
                             Answer(text: "Answer A", isTrue: true),

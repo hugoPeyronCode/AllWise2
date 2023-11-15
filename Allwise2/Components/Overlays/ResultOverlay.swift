@@ -13,35 +13,44 @@ struct ResultOverlay: View {
     var iconName: String
     var backgroundColor: Color
     var textColor: Color
+    
+    
+    @State var questionState : QuestionState
+    @State var actions: () -> Void
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Image(systemName: iconName)
-                Text(message)
-                Spacer()
-            }
-            .font(.title)
-            .bold()
-            
-            Text(explanation)
+        VStack {
+            Spacer()
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    Image(systemName: iconName)
+                    Text(message)
+                    Spacer()
+                }
+                .padding(.top)
+                .padding(.horizontal)
+                .font(.title)
                 .bold()
-                .font(.body)
-            
-            VStack{
                 
+                Text(explanation)
+                    .bold()
+                    .font(.body)
+                    .padding()
+                
+                ValidationButton(questionState: questionState) {
+                        actions()
+                    }
             }
-            .frame(height: 50)
+            .fontDesign(.rounded)
+            .frame(maxWidth: .infinity)
+            .background(backgroundColor)
+            .foregroundColor(textColor)
         }
-        .fontDesign(.rounded)
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(backgroundColor)
-        .foregroundColor(textColor)
+        .transition(.move(edge: .bottom))
     }
 }
 
 
 #Preview {
-    ResultOverlay(message: "Correct", explanation: "You must be wrong because the real message is definitely something else. ", iconName: "heart.fill", backgroundColor: .paleGreen, textColor: .duoGreen)
+    ResultOverlay(message: "Correct", explanation: "You must be wrong because the real message is definitely something else. ", iconName: "heart.fill", backgroundColor: .paleGreen, textColor: .duoGreen, questionState: .isValid, actions: {})
 }

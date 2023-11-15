@@ -12,21 +12,39 @@ struct ValidationButton : View {
     var questionState: QuestionState
     var action : () -> Void
     
+    @State private var offset: CGFloat = 2
+
     var body: some View {
-        Button {
-            action()
-        } label: {
-            Text(content())
-                .frame(maxWidth: .infinity, maxHeight: 50)
-                .foregroundStyle(questionState != .isNeutral ? .white : .gray)
-                .font(.title2)
-                .bold()
-                .fontDesign(.rounded)
-                .background(backgroundColor())
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .padding()
-        }
-        .disabled(questionState == .isNeutral)
+            ZStack {
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(shadowbackgroundColor())
+                    .frame(maxWidth: .infinity, maxHeight: 50)
+                    .offset(y: offset)
+                
+                Text(content())
+                    .frame(maxWidth: .infinity, maxHeight: 50)
+                    .foregroundColor(questionState != .isNeutral ? .white : .gray)
+                    .font(.title2)
+                    .bold()
+                    .fontDesign(.rounded)
+                    .background(backgroundColor())
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    .offset(y: -offset)
+            }
+            .disabled(questionState == .isNeutral)
+            .padding()
+            .contentShape(RoundedRectangle(cornerRadius: 15))
+            .gesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged({ _ in
+                        self.offset = 0
+                    })
+                    .onEnded({ _ in
+                        self.offset = 2
+                        action()
+                    })
+            )
+
     }
     
     func content() -> String {
@@ -45,13 +63,26 @@ struct ValidationButton : View {
     func backgroundColor() -> Color {
         switch questionState {
         case .isSelected:
-            return .blue
+            return .duoBlue
         case .isValid:
             return .duoGreen
         case .isWrong:
             return .duoRed
         case .isNeutral:
             return .paleGray
+        }
+    }
+    
+    func shadowbackgroundColor() -> Color {
+        switch questionState {
+        case .isSelected:
+            return .darkBlue
+        case .isValid:
+            return .darkGreen
+        case .isWrong:
+            return .darkRed
+        case .isNeutral:
+            return .gray
         }
     }
 }

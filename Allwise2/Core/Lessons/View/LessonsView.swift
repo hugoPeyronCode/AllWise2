@@ -8,11 +8,40 @@
 import SwiftUI
 
 struct LessonsView: View {
+    
+    @EnvironmentObject var vm : AppViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            // Updated grid to have two flexible columns
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], content: {
+                ForEach(vm.lessons, id: \.id) { lesson in
+                    LessonButton(lesson: lesson)
+                        .padding()
+                }
+            })
+        }
     }
 }
 
+
 #Preview {
     LessonsView()
+        .environmentObject(AppViewModel())
+}
+
+struct LessonButton: View {
+    
+    let lesson: Lesson
+    
+    @State var isSelected : Bool = false
+    
+    var body: some View {
+        VStack {
+            Text(lesson.image)
+            Text(lesson.name)
+        }
+        .font(.system(size: 40))
+        .frame(width: 50, height: 60)
+    }
 }

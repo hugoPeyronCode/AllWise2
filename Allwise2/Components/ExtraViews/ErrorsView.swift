@@ -8,11 +8,42 @@
 import SwiftUI
 
 struct ErrorsView: View {
+    
+//    @Environment(\.dismiss) private var dismiss
+    
+    @State var action : () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            
+            
+            Spacer()
+            Text("😄")
+                .font(.largeTitle)
+                .scaleEffect(2)
+                .padding()
+            
+            Text("Let's correct the exercices you've missed!")
+            
+            Spacer()
+            
+            Button(action: {action()}, label: {
+                
+                Text("Continue")
+                    .frame(maxWidth: .infinity, maxHeight: 50)
+                    .foregroundStyle(.white)
+                    .font(.title2)
+                    .bold()
+                    .fontDesign(.rounded)
+                    .background(Color.duoGreen)
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    .padding()
+            })
+            
+        }
     }
 }
 
 #Preview {
-    ErrorsView()
+    ErrorsView(action: {})
 }

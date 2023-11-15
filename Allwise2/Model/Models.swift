@@ -16,6 +16,7 @@ struct Answer: Identifiable {
 struct Question: Identifiable {
     let id = UUID()
     let question: String
+    let image: String
     let explanation: String
     let answers: [Answer]
     var isSolved: Bool
