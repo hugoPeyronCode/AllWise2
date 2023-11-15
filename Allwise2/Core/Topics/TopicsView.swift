@@ -18,15 +18,15 @@ struct TopicsView: View {
     @State private var isNavToSubTopicView = false
     
     var body: some View {
-
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(spacing: 30) {
-                ForEach(vm.topics, id: \.id) { topic in
-                    TopicButton(topic: topic) {
-                        selectedSubTopic = vm.firstUnsolvedSubTopic(topicId: topic.id)
+                ForEach(vm.topics.indices, id: \.self) { index in
+                    TopicButton(topic: vm.topics[index]) {
+                        selectedSubTopic = vm.firstUnsolvedSubTopic(topicId: vm.topics[index].id)
                         isNavToSubTopicView = selectedSubTopic != nil
                     }
-                    .disabled(topic.state == .isLocked)
+                    .offset(x: index % 2 == 0 ? 50 : -50)
+                    .disabled(vm.topics[index].state == .isLocked)
                 }
             }
             .navigationDestination(isPresented: $isNavToSubTopicView) {
