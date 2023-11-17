@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SingleSelectButton : View {
     
+    @ObservedObject var lifesManager = LifesManager.shared
+    
     let answer : Answer
     @Binding var selectedAnswers: [Answer]
     @Binding var questionState : QuestionState
@@ -17,7 +19,17 @@ struct SingleSelectButton : View {
     
     var body: some View {
         Button {
-            action()
+            
+            if lifesManager.hasEnoughLifes {
+                withAnimation(.snappy){
+                    action()
+                }
+            } else {
+                withAnimation(.snappy){
+                    lifesManager.triggerModal = true
+                }
+            }
+
         } label: {
             RoundedRectangle(cornerRadius: 15)
                 .strokeBorder( isSelected() ? color(questionState: questionState) : .gray, lineWidth: isSelected() ? 3 : 2)

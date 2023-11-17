@@ -9,7 +9,8 @@ import SwiftUI
 
 struct TopicsView: View {
     // Data
-    @EnvironmentObject var vm: AppViewModel
+    //    @EnvironmentObject var vm: AppViewModel
+    @ObservedObject var vm = AppViewModel.shared
     
     // Selection
     @State private var selectedSubTopic: SubTopic?
@@ -17,40 +18,73 @@ struct TopicsView: View {
     // Navigation
     @State private var isNavToSubTopicView = false
     
+    let lesson : Lesson
+    
     var body: some View {
+        
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(spacing: 30) {
-                ForEach(vm.topics.indices, id: \.self) { index in
-                    TopicButton(topic: vm.topics[index]) {
-                        selectedSubTopic = vm.firstUnsolvedSubTopic(topicId: vm.topics[index].id)
-                        isNavToSubTopicView = selectedSubTopic != nil
+                    ForEach(lesson.topics, id: \.id) { topic in
+                        TopicButton(topic: topic, lessonColor: lesson.color) {
+                            selectedSubTopic = vm.firstUnsolvedSubTopic(topicId: topic.id)
+                            isNavToSubTopicView = selectedSubTopic != nil
+                        }
+                        .disabled(topic.state == .isLocked)
+                        
+                        Text(topic.name)
+                            .font(.title3)
+                            .fontDesign(.rounded)
+                            .bold()
+                            .foregroundStyle(color(topicState: topic.state))
+                        
+                        RoundedRectangle(cornerRadius: 15)
+                            .frame(width: 10, height: 50)
+                            .foregroundStyle(color(topicState: topic.state))
+
                     }
-                    .offset(x: index % 2 == 0 ? 50 : -50)
-                    .disabled(vm.topics[index].state == .isLocked)
-                }
+                    
+                    // End of session Button
+                    CircularProgressView(progress: vm.progressOfLesson(lessonId: lesson.id), color: .blue)
+                    .frame(height: 200)
+                
+                Text("\(lesson.name) Complete")
+                    .font(.title3)
+                    .fontDesign(.rounded)
+                    .bold()
             }
             .navigationDestination(isPresented: $isNavToSubTopicView) {
                 if let subTopicToNavigate = selectedSubTopic {
                     SubTopicView(subTopic: subTopicToNavigate) { result in
                         if result == true {
-                            vm.updateTopicsState()
+                            vm.makeFirstUnSolvedTopicStateToCurrent(lessonId: lesson.id )
                         }
                     }
-                    .environmentObject(vm)
+                    //                    .environmentObject(vm)
                 }
             }
         }
         .onAppear{
             // Make the last not solved topic state to current and update it's progression
-            vm.updateTopicsState()
+            print("Topic View Appears")
+            vm.makeFirstUnSolvedTopicStateToCurrent(lessonId: lesson.id )
+        }
+    }
+    
+    func color(topicState : TopicState) -> Color {
+        switch topicState {
+        case .current:
+            return .duoBlue
+        case .isLocked:
+            return .paleGray
+        case .isValidated:
+            return .duoGreen
         }
     }
 }
 
 
 #Preview {
-    TopicsView()
-        .environmentObject(AppViewModel())
+    TopicsView(lesson: AppViewModel.shared.lessons.first!)
 }
 
 

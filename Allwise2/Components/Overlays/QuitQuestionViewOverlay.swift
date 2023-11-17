@@ -32,15 +32,8 @@ struct QuitQuestionViewOverlay: View {
                     .bold()
                 
                 VStack{
-                    Button("Keep learning", action: onContinueLearning)
-                        .font(.title3)
-                        .bold()
-                        .foregroundStyle(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(.blue)
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .padding()
+                    
+                    ContinueButton(content: "Keep learning", backgroundColor: .duoBlue, shadowGroundColor: .darkBlue, action: onContinueLearning)
                     
                     Button("End Session", action: onEndSession)
                         .font(.title3)
@@ -50,15 +43,10 @@ struct QuitQuestionViewOverlay: View {
             }
             .fontDesign(.rounded)
             .frame(maxWidth: .infinity)
-            .background(.white)
-            .foregroundStyle(.foreground)
+            .background(.duoWhite)
+            .foregroundStyle(.reverseWhite)
         }
         .transition(.move(edge: .bottom))
-        .onDisappear {
-            withAnimation {
-                emoji = "😄"
-            }
-        }
     }
 }
 

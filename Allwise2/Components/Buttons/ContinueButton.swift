@@ -22,10 +22,10 @@ struct ContinueButton: View {
                 .frame(maxWidth: .infinity, maxHeight: 50)
                 .offset(y: offset) 
             
-            Text(content)
+            Text(content.uppercased())
                 .frame(maxWidth: .infinity, maxHeight: 50)
                 .foregroundColor(.white)
-                .font(.title2)
+                .font(.body)
                 .bold()
                 .fontDesign(.rounded)
                 .background(backgroundColor)
@@ -40,8 +40,10 @@ struct ContinueButton: View {
                     self.offset = 0
                 })
                 .onEnded({ _ in
-                    self.offset = 2
-                    action()
+                    withAnimation(.snappy){
+                        self.offset = 2
+                        action()
+                    }
                 })
         )
     }

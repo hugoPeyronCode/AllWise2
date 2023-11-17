@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Answer: Identifiable {
     let id = UUID()
@@ -23,9 +24,9 @@ struct Question: Identifiable {
     let type: QuestionType
         
     enum QuestionType {
-        case duo
-        case choice
-        case cash
+        case qcm
+        case match
+        case drag
     }
 }
 
@@ -42,19 +43,19 @@ struct Topic: Identifiable {
     var subtopics: [SubTopic]
     var isSolved: Bool
     var state : TopicState
-    
-    enum TopicState {
-        case current
-        case isLocked
-        case isValidated
-    }
-
 }
 
 struct Lesson: Identifiable {
     let id = UUID()
     let name: String
     let image: String
+    let color : Color
     var topics: [Topic]
 }
 
+
+enum TopicState : String {
+    case current = "Current"
+    case isLocked = "isLocked"
+    case isValidated = "isValidated"
+}

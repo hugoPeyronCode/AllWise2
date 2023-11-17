@@ -53,6 +53,7 @@ struct CircularProgressView: View {
                 Text("\(progress * 100, specifier: "%.0f")%")
                     .font(fontSize)
                     .fontWeight(.black)
+                    .fontDesign(.rounded)
             }
         }
     }

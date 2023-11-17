@@ -42,7 +42,6 @@ struct ResultView: View {
                 .foregroundColor(.gray)
                 .padding(.bottom, 50)
             
-            
             HStack(spacing: 20) {
                 // XP widget always yellow
                 ResultViewWidget(title: "TOTAL XP", value: "\(totalXP)", icon: "bolt.fill", color: .yellow)
@@ -74,13 +73,13 @@ struct ResultViewWidget: View {
             Text(title)
                 .font(.callout)
                 .bold()
-                .foregroundStyle(.white)
+                .foregroundStyle(.duoWhite)
                 .offset(y: 3)
             
             ZStack {
                 
                 RoundedRectangle(cornerRadius: 15)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.duoWhite)
 
                 HStack {
                     Image(systemName: icon)

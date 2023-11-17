@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct ResultOverlay: View {
+    
+    @ObservedObject var lifesManager = LifesManager.shared
+    
     var message: String
     var explanation: String
     var iconName: String
     var backgroundColor: Color
     var textColor: Color
-    
     
     @State var questionState : QuestionState
     @State var actions: () -> Void
@@ -38,8 +40,12 @@ struct ResultOverlay: View {
                     .padding()
                 
                 ValidationButton(questionState: questionState) {
+                    if lifesManager.hasEnoughLifes {
                         actions()
+                    } else {
+                        lifesManager.triggerModal = true
                     }
+                }
             }
             .fontDesign(.rounded)
             .frame(maxWidth: .infinity)

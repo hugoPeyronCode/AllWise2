@@ -10,12 +10,10 @@ import SwiftUI
 @main
 struct Allwise2App: App {
     
-    var vm = AppViewModel()
     
     var body: some Scene {
         WindowGroup {
             HomeView()
-                .environmentObject(vm)
         }
     }
 }

@@ -9,9 +9,12 @@ import SwiftUI
 
 struct TopicButton: View {
     
-    @EnvironmentObject var vm : AppViewModel
+    @ObservedObject var vm = AppViewModel.shared
+    @ObservedObject var lifesManager = LifesManager.shared
     
     var topic: Topic
+    
+    let lessonColor : Color
     
     @State var progress: Double = 0
     
@@ -49,8 +52,14 @@ struct TopicButton: View {
                         self.offset = 0
                     })
                     .onEnded({ _ in
-                        self.offset = 2
-                        self.action()
+                        withAnimation(.snappy){
+                            self.offset = 2
+                            if lifesManager.hasEnoughLifes {
+                                action()
+                            } else {
+                                lifesManager.triggerModal = true
+                            }
+                        }
                     })
             )
             .onAppear{
@@ -59,6 +68,7 @@ struct TopicButton: View {
             }
             
             if progress == 1 {
+                print("Mark topic as solve")
                 vm.markTopicAsSolved(topic.id)
             }
                 
@@ -75,7 +85,7 @@ struct TopicButton: View {
     func color() -> Color {
         switch topic.state {
         case .current:
-            return .duoBlue
+            return lessonColor
         case .isLocked:
             return .paleGray
         case .isValidated:
@@ -86,7 +96,7 @@ struct TopicButton: View {
     func accentColor() -> Color {
         switch topic.state {
         case .current:
-            return .darkBlue
+            return lessonColor.dark
         case .isLocked:
             return .gray
         case .isValidated:
@@ -112,16 +122,14 @@ struct TopicButton: View {
 }
 
 
-
 struct topicButtonTestView : View {
     var body: some View {
         VStack {
-            TopicButton(topic: Topic(name: "", subtopics: [SubTopic(name: "", questions: [], isSolved: true)], isSolved: false, state: .current), action: {})
-            TopicButton(topic: Topic(name: "", subtopics: [], isSolved: false, state: .isLocked), action: {})
+            TopicButton(topic: Topic(name: "", subtopics: [SubTopic(name: "", questions: [], isSolved: true)], isSolved: false, state: .current), lessonColor: .blue, action: {})
+            TopicButton(topic: Topic(name: "", subtopics: [], isSolved: false, state: .isLocked),  lessonColor: .blue, action: {})
                 .padding()
-            TopicButton(topic: Topic(name: "", subtopics: [], isSolved: true, state: .isValidated), action: {})
+            TopicButton(topic: Topic(name: "", subtopics: [], isSolved: true, state: .isValidated), lessonColor: .blue, action: {})
         }
-        .environmentObject(AppViewModel())
 
     }
 }

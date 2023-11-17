@@ -21,14 +21,12 @@ class QuestionViewModel : ObservableObject {
     @Published var resultOverlayColor : Color = .green
     @Published var resultOverHeight : CGFloat = 0
     
-    
     @Published var validationButtonContent : String = ""
     @Published var validationButtonColor : Color = .duoGreen
     
     func isAnswersArrayContainsSomething(for answersArray: [Answer]) -> Bool {
         return !answersArray.isEmpty
     }
-    
     
     var congratulationsMessages = ["Nicely done!", "Congrats!", "Nice one!", "Bravo!", "Super!", "Good one!", "Right!", "Correct!"]
     
@@ -55,7 +53,4 @@ class QuestionViewModel : ObservableObject {
             showResultOverlay = false
         }
     }
-    
-
-    
 }

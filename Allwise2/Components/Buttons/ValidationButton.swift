@@ -9,42 +9,52 @@ import SwiftUI
 
 struct ValidationButton : View {
     
+    @ObservedObject var lifesManager = LifesManager.shared
+    
     var questionState: QuestionState
     var action : () -> Void
     
     @State private var offset: CGFloat = 2
-
+    
     var body: some View {
-            ZStack {
-                RoundedRectangle(cornerRadius: 15)
-                    .fill(shadowbackgroundColor())
-                    .frame(maxWidth: .infinity, maxHeight: 50)
-                    .offset(y: offset)
-                
-                Text(content())
-                    .frame(maxWidth: .infinity, maxHeight: 50)
-                    .foregroundColor(questionState != .isNeutral ? .white : .gray)
-                    .font(.title2)
-                    .bold()
-                    .fontDesign(.rounded)
-                    .background(backgroundColor())
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                    .offset(y: -offset)
-            }
-            .disabled(questionState == .isNeutral)
-            .padding()
-            .contentShape(RoundedRectangle(cornerRadius: 15))
-            .gesture(
-                DragGesture(minimumDistance: 0)
-                    .onChanged({ _ in
-                        self.offset = 0
-                    })
-                    .onEnded({ _ in
+        ZStack {
+            RoundedRectangle(cornerRadius: 15)
+                .fill(shadowbackgroundColor())
+                .frame(maxWidth: .infinity, maxHeight: 50)
+                .offset(y: offset)
+            
+            Text(content())
+                .frame(maxWidth: .infinity, maxHeight: 50)
+                .foregroundColor(questionState != .isNeutral ? .white : .gray)
+                .font(.title2)
+                .bold()
+                .fontDesign(.rounded)
+                .background(backgroundColor())
+                .clipShape(RoundedRectangle(cornerRadius: 15))
+                .offset(y: -offset)
+        }
+        .disabled(questionState == .isNeutral)
+        .padding()
+        .contentShape(RoundedRectangle(cornerRadius: 15))
+        .gesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged({ _ in
+                    self.offset = 0
+                })
+                .onEnded({ _ in
+                    
+                    withAnimation(.snappy){
                         self.offset = 2
-                        action()
-                    })
-            )
-
+                        if lifesManager.hasEnoughLifes {
+                            action()
+                        } else {
+                            lifesManager.triggerModal = true
+                        }
+                    }
+                    
+                })
+        )
+        
     }
     
     func content() -> String {

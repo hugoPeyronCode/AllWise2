@@ -15,7 +15,7 @@ struct CustomProgressBar: View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: geometry.size.height / 2)
-                    .foregroundColor(Color.gray.opacity(0.2)) // Background of the progress bar
+                    .foregroundStyle(.reverseWhite.opacity(0.4))
 
                 RoundedRectangle(cornerRadius: geometry.size.height / 2)
                     .frame(width: geometry.size.width * CGFloat(progress))

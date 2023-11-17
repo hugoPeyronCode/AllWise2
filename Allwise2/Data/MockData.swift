@@ -8,7 +8,7 @@
 import Foundation
 
 let mockData = [
-    Lesson(name: "L1", image: "📘", topics: (1...10).map { topicIndex in
+    Lesson(name: "History", image: "🏺", color: .blue, topics: (1...10).map { topicIndex in
         Topic(name: "L1 T\(topicIndex)", subtopics: (1...2).map { subTopicIndex in
             SubTopic(
                 name: "L1 T\(topicIndex) ST\(subTopicIndex)",
@@ -23,14 +23,14 @@ let mockData = [
                             Answer(text: "Answer D", isTrue: false)
                         ],
                         isSolved: false,
-                        type: .choice // Using the .choice type as an example
+                        type: .qcm // Using the .choice type as an example
                     )
                 },
                 isSolved: false
             )
         }, isSolved: false, state: .current)
     }),
-    Lesson(name: "L2", image: "📗", topics: (1...10).map { topicIndex in
+    Lesson(name: "Geography", image: "🗺️", color: .teal, topics: (1...10).map { topicIndex in
         Topic(name: "L2 T\(topicIndex)", subtopics: (1...5).map { subTopicIndex in
             SubTopic(
                 name: "L2 T\(topicIndex) ST\(subTopicIndex)",
@@ -45,14 +45,14 @@ let mockData = [
                             Answer(text: "Answer D", isTrue: false)
                         ],
                         isSolved: false,
-                        type: .choice
+                        type: .qcm
                     )
                 },
                 isSolved: false
             )
         }, isSolved: false, state: .current)
     }),
-    Lesson(name: "L3", image: "📙", topics: (1...10).map { topicIndex in
+    Lesson(name: "Science", image: "🧬", color: .mint, topics: (1...10).map { topicIndex in
         Topic(name: "L3 T\(topicIndex)", subtopics: (1...5).map { subTopicIndex in
             SubTopic(
                 name: "L3 T\(topicIndex) ST\(subTopicIndex)",
@@ -67,7 +67,7 @@ let mockData = [
                             Answer(text: "Answer D", isTrue: false)
                         ],
                         isSolved: false,
-                        type: .choice
+                        type: .qcm
                     )
                 },
                 isSolved: false

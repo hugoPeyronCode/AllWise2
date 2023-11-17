@@ -14,9 +14,10 @@ enum QuestionState {
     case isNeutral
 }
 
-struct QuestionView: View {
+struct QuestionQCMView: View {
     
-    @EnvironmentObject var vm: AppViewModel
+    @ObservedObject var vm = AppViewModel.shared
+    
     @StateObject var localVM = QuestionViewModel()
     
     let question : Question
@@ -137,7 +138,7 @@ struct QuestionView: View {
 }
 
 #Preview {
-    QuestionView(question: Question(
+    QuestionQCMView(question: Question(
         question: "Quelle est la couleur du cheval blanc d'Henri IV ?", image: "",
         explanation: "La réponse est dans la question, La réponse est dans la question",
         answers: [
@@ -147,9 +148,8 @@ struct QuestionView: View {
             Answer(text: "Noir", isTrue: false)
         ],
         isSolved: false,
-        type: .duo
+        type: .qcm
     ), result: .constant(false), action1: {}, action2: {}
     )
-    .environmentObject(AppViewModel())
 }
 
