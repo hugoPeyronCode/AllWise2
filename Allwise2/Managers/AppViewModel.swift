@@ -6,13 +6,15 @@
 //
 
 import Foundation
+import SwiftUI
 
 class AppViewModel : ObservableObject {
     
+    static let shared = AppViewModel()
+    
     @Published var lessons : [Lesson] = mockData // Main array of data. Contain all the lessons, topics, subtopics, questions, answers
     
-    @Published var lifesCounter : Int = 5
-    
+
     @Published var dailyStreak : Int = 0
     
     

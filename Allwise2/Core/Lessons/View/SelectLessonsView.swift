@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct LessonsView: View {
+struct SelectLessonsView: View {
     
-    @EnvironmentObject var vm : AppViewModel
+    @ObservedObject var vm = AppViewModel.shared
     
     var body: some View {
         ScrollView {
@@ -26,8 +26,7 @@ struct LessonsView: View {
 
 
 #Preview {
-    LessonsView()
-        .environmentObject(AppViewModel())
+    SelectLessonsView()
 }
 
 struct LessonButton: View {
