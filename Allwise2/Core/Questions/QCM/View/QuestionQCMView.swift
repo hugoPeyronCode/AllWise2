@@ -44,7 +44,6 @@ struct QuestionQCMView: View {
                 ValidationButton(questionState: localVM.questionState) {
                         validationButtonActions()
                     }
-
             }
         }
     }
