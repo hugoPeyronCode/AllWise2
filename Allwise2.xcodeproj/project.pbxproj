@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,7 +16,6 @@
 		433AEF9C2AFE633500449F10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 433AEF9B2AFE633500449F10 /* Assets.xcassets */; };
 		433AEF9F2AFE633500449F10 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 433AEF9E2AFE633500449F10 /* Preview Assets.xcassets */; };
 		433AEFA72AFE635500449F10 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433AEFA62AFE635500449F10 /* Models.swift */; };
-		433AEFAA2AFE637000449F10 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433AEFA92AFE637000449F10 /* HomeView.swift */; };
 		433AEFAC2AFE663800449F10 /* TopicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433AEFAB2AFE663800449F10 /* TopicsView.swift */; };
 		433AEFAF2AFE6B1300449F10 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433AEFAE2AFE6B1300449F10 /* AppViewModel.swift */; };
 		433AEFB12AFE6B5800449F10 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433AEFB02AFE6B5800449F10 /* MockData.swift */; };
@@ -31,6 +30,8 @@
 		4351DF6C2B07A48400D441E9 /* QuestionMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351DF6B2B07A48400D441E9 /* QuestionMatchView.swift */; };
 		4351DF6E2B07A62400D441E9 /* QuestionMatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4351DF6D2B07A62400D441E9 /* QuestionMatchViewModel.swift */; };
 		43785F222B0293AD000BBD76 /* SelectLessonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43785F212B0293AD000BBD76 /* SelectLessonsView.swift */; };
+		4378D2102B0CBAEF00736633 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378D20F2B0CBAEF00736633 /* HomeView.swift */; };
+		4378D2122B0CBED300736633 /* ResultOverlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4378D2112B0CBED300736633 /* ResultOverlayViewModel.swift */; };
 		4382423C2B04C1EC00CC321C /* ErrorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4382423B2B04C1EC00CC321C /* ErrorsView.swift */; };
 		4382423E2B04D76F00CC321C /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4382423D2B04D76F00CC321C /* ResultView.swift */; };
 		438242432B04DCED00CC321C /* ResultViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438242422B04DCED00CC321C /* ResultViewViewModel.swift */; };
@@ -53,7 +54,6 @@
 		433AEF9B2AFE633500449F10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		433AEF9E2AFE633500449F10 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		433AEFA62AFE635500449F10 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		433AEFA92AFE637000449F10 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		433AEFAB2AFE663800449F10 /* TopicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsView.swift; sourceTree = "<group>"; };
 		433AEFAE2AFE6B1300449F10 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		433AEFB02AFE6B5800449F10 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
@@ -68,6 +68,8 @@
 		4351DF6B2B07A48400D441E9 /* QuestionMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMatchView.swift; sourceTree = "<group>"; };
 		4351DF6D2B07A62400D441E9 /* QuestionMatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMatchViewModel.swift; sourceTree = "<group>"; };
 		43785F212B0293AD000BBD76 /* SelectLessonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLessonsView.swift; sourceTree = "<group>"; };
+		4378D20F2B0CBAEF00736633 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		4378D2112B0CBED300736633 /* ResultOverlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultOverlayViewModel.swift; sourceTree = "<group>"; };
 		4382423B2B04C1EC00CC321C /* ErrorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorsView.swift; sourceTree = "<group>"; };
 		4382423D2B04D76F00CC321C /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		438242422B04DCED00CC321C /* ResultViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewViewModel.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 			children = (
 				4351DF642B079ADE00D441E9 /* Extensions */,
 				433AEF972AFE633300449F10 /* Allwise2App.swift */,
+				4378D20F2B0CBAEF00736633 /* HomeView.swift */,
 				433AEFA82AFE636900449F10 /* Core */,
 				433AEFA52AFE634D00449F10 /* Models */,
 				433AEFAD2AFE6AFC00449F10 /* Managers */,
@@ -183,7 +186,6 @@
 		433AEFA82AFE636900449F10 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				433AEFA92AFE637000449F10 /* HomeView.swift */,
 				43785F1E2B029395000BBD76 /* Lessons */,
 				433AEFB62AFE72F900449F10 /* Topics */,
 				43030A5B2AFFC65C00E4CA6B /* SubTopic */,
@@ -239,7 +241,7 @@
 		4347CEE22B03BCC2004531B4 /* Overlays */ = {
 			isa = PBXGroup;
 			children = (
-				4347CEDC2B03BBD3004531B4 /* ResultOverlay.swift */,
+				4378D2132B0CBEEF00736633 /* ResultOverlay */,
 				4347CEE42B03CE15004531B4 /* QuitQuestionViewOverlay.swift */,
 				43C6BBB82B050391003134C2 /* BuyNewLifesOverlay.swift */,
 			);
@@ -321,6 +323,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4378D2132B0CBEEF00736633 /* ResultOverlay */ = {
+			isa = PBXGroup;
+			children = (
+				4378D2112B0CBED300736633 /* ResultOverlayViewModel.swift */,
+				4347CEDC2B03BBD3004531B4 /* ResultOverlay.swift */,
+			);
+			path = ResultOverlay;
+			sourceTree = "<group>";
+		};
 		4382423A2B04C1DA00CC321C /* ExtraViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,7 +409,7 @@
 				};
 			};
 			buildConfigurationList = 433AEF8F2AFE633300449F10 /* Build configuration list for PBXProject "Allwise2" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -436,6 +447,7 @@
 				433AEFB52AFE724900449F10 /* TopicButton.swift in Sources */,
 				438242452B04E11500CC321C /* ContinueButton.swift in Sources */,
 				4351DF662B079AE800D441E9 /* ColorsExtensions.swift in Sources */,
+				4378D2122B0CBED300736633 /* ResultOverlayViewModel.swift in Sources */,
 				4351DF6C2B07A48400D441E9 /* QuestionMatchView.swift in Sources */,
 				43C6BBB92B050391003134C2 /* BuyNewLifesOverlay.swift in Sources */,
 				433AEFAF2AFE6B1300449F10 /* AppViewModel.swift in Sources */,
@@ -448,8 +460,8 @@
 				4382423E2B04D76F00CC321C /* ResultView.swift in Sources */,
 				4347CEE52B03CE15004531B4 /* QuitQuestionViewOverlay.swift in Sources */,
 				433AEFB12AFE6B5800449F10 /* MockData.swift in Sources */,
+				4378D2102B0CBAEF00736633 /* HomeView.swift in Sources */,
 				433AEFA72AFE635500449F10 /* Models.swift in Sources */,
-				433AEFAA2AFE637000449F10 /* HomeView.swift in Sources */,
 				433AEFBB2AFE748C00449F10 /* SubTopicView.swift in Sources */,
 				4351DF6E2B07A62400D441E9 /* QuestionMatchViewModel.swift in Sources */,
 				43785F222B0293AD000BBD76 /* SelectLessonsView.swift in Sources */,
@@ -599,6 +611,8 @@
 				DEVELOPMENT_TEAM = YA24P24868;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Allwise;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -629,6 +643,8 @@
 				DEVELOPMENT_TEAM = YA24P24868;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Allwise;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

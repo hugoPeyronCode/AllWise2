@@ -31,8 +31,11 @@ struct QuestionQCMView: View {
             
             VStack {
                 
+                Spacer()
+                
                 QuestionField
                 
+                Spacer()
                 
                 AnswerField
                 
@@ -43,17 +46,6 @@ struct QuestionQCMView: View {
                     }
 
             }
-            
-            if localVM.showResultOverlay {
-                    ResultOverlay(message: localVM.resultOverMessage,
-                                  explanation: question.explanation,
-                                  iconName: localVM.resultOverlayIcon,
-                                  backgroundColor: localVM.resultOverlayColor,
-                                  textColor: localVM.resultOverlayFontColor,
-                                  questionState: localVM.questionState) {
-                        validationButtonActions()
-                    }
-            }
         }
     }
     
@@ -61,18 +53,12 @@ struct QuestionQCMView: View {
         switch localVM.questionState {
         case .isSelected:
             LocalCheckResult()
-        case .isValid:
+        case .isValid, .isWrong:
             withAnimation(.bouncy) {
                 localVM.selectedAnswers.removeAll()
                 localVM.questionState = .isNeutral
                 localVM.isMoveToNextPageButtonAppears = false
-                action2()
-            }
-        case .isWrong:
-            withAnimation(.bouncy) {
-                localVM.selectedAnswers.removeAll()
-                localVM.questionState = .isNeutral
-                localVM.isMoveToNextPageButtonAppears = false
+                localVM.showResultOverlay = false
                 action2()
             }
         case .isNeutral:
