@@ -21,13 +21,6 @@ struct Question: Identifiable {
     let explanation: String
     let answers: [Answer]
     var isSolved: Bool
-    let type: QuestionType
-        
-    enum QuestionType {
-        case qcm
-        case match
-        case drag
-    }
 }
 
 struct SubTopic: Identifiable {

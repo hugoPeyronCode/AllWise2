@@ -22,8 +22,7 @@ let mockData = [
                             Answer(text: "Answer C", isTrue: false),
                             Answer(text: "Answer D", isTrue: false)
                         ],
-                        isSolved: false,
-                        type: .qcm // Using the .choice type as an example
+                        isSolved: false
                     )
                 },
                 isSolved: false
@@ -44,8 +43,7 @@ let mockData = [
                             Answer(text: "Answer C", isTrue: false),
                             Answer(text: "Answer D", isTrue: false)
                         ],
-                        isSolved: false,
-                        type: .qcm
+                        isSolved: false
                     )
                 },
                 isSolved: false
@@ -66,8 +64,7 @@ let mockData = [
                             Answer(text: "Answer C", isTrue: false),
                             Answer(text: "Answer D", isTrue: false)
                         ],
-                        isSolved: false,
-                        type: .qcm
+                        isSolved: false
                     )
                 },
                 isSolved: false

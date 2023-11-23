@@ -9,14 +9,11 @@ import SwiftUI
 
 struct ResultOverlay: View {
     
+    @StateObject var vm = ResultOverlayViewModel()
+    
     @ObservedObject var lifesManager = LifesManager.shared
     
-    var message: String
-    var explanation: String
-    var iconName: String
-    var backgroundColor: Color
-    var textColor: Color
-    
+    let explanation : String
     @State var questionState : QuestionState
     @State var actions: () -> Void
 
@@ -25,8 +22,8 @@ struct ResultOverlay: View {
             Spacer()
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
-                    Image(systemName: iconName)
-                    Text(message)
+                    Image(systemName: vm.icon)
+                    Text(vm.message)
                     Spacer()
                 }
                 .padding(.top)
@@ -34,7 +31,7 @@ struct ResultOverlay: View {
                 .font(.title)
                 .bold()
                 
-                Text(explanation)
+                Text(vm.explanation)
                     .bold()
                     .font(.body)
                     .padding()
@@ -49,14 +46,17 @@ struct ResultOverlay: View {
             }
             .fontDesign(.rounded)
             .frame(maxWidth: .infinity)
-            .background(backgroundColor)
-            .foregroundColor(textColor)
+            .background(vm.color)
+            .foregroundColor(vm.fontColor)
         }
         .transition(.move(edge: .bottom))
+        .onAppear{
+            vm.updateContent(questionExplanation: explanation, questionState: questionState)
+        }
     }
 }
 
 
 #Preview {
-    ResultOverlay(message: "Correct", explanation: "You must be wrong because the real message is definitely something else. ", iconName: "heart.fill", backgroundColor: .paleGreen, textColor: .duoGreen, questionState: .isValid, actions: {})
+    ResultOverlay(explanation: "questionExplanation", questionState: .isSelected, actions: {})
 }

@@ -8,49 +8,22 @@
 import Foundation
 import SwiftUI
 
+enum QuestionState {
+    case isSelected, isValid, isWrong, isNeutral
+}
+
 class QuestionViewModel : ObservableObject {
     
     @Published var questionState : QuestionState = .isNeutral
     @Published var selectedAnswers : [Answer] = []
-    @Published var isMoveToNextPageButtonAppears: Bool = false
-    
     @Published var showResultOverlay : Bool = false
-    @Published var resultOverMessage : String = ""
-    @Published var resultOverlayIcon : String = ""
-    @Published var resultOverlayFontColor : Color = Color.duoGreen
-    @Published var resultOverlayColor : Color = .green
-    @Published var resultOverHeight : CGFloat = 0
     
-    @Published var validationButtonContent : String = ""
-    @Published var validationButtonColor : Color = .duoGreen
-    
-    func isAnswersArrayContainsSomething(for answersArray: [Answer]) -> Bool {
-        return !answersArray.isEmpty
-    }
-    
-    var congratulationsMessages = ["Nicely done!", "Congrats!", "Nice one!", "Bravo!", "Super!", "Good one!", "Right!", "Correct!"]
-    
-    func updateResultOverlay() {
-        
-        print("update result overlay")
-        
+    func toggleResultOverlay() {
         switch questionState {
-        case .isSelected:
+        case .isSelected, .isNeutral:
             showResultOverlay = false
-        case .isValid:
-            resultOverMessage = congratulationsMessages.randomElement() ?? "Correct!"
-            resultOverlayIcon = "checkmark.circle.fill"
-            resultOverlayFontColor = .duoGreen
-            resultOverlayColor = .paleGreen
-            resultOverHeight = 200
-        case .isWrong:
-            resultOverMessage = "Incorrect"
-            resultOverlayIcon = "xmark.circle.fill"
-            resultOverlayFontColor = .duoRed
-            resultOverlayColor = .paleRed
-            resultOverHeight = 270
-        case .isNeutral:
-            showResultOverlay = false
+        case .isValid, .isWrong:
+            showResultOverlay = true
         }
     }
 }

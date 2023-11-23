@@ -16,3 +16,13 @@ struct Allwise2App: App {
         }
     }
 }
+
+//matchingQuestion: MatchingQuestion(
+//    pairs: [
+//        (key: "United States", value: "Washington, D.C."),
+//        (key: "France", value: "Paris"),
+//        (key: "Japan", value: "Tokyo"),
+//        (key: "United Kingdom", value: "London"),
+//        (key: "Germany", value: "Berlin")
+//    ],
+//    isSolved: false)

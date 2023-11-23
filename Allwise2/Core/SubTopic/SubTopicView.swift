@@ -32,6 +32,7 @@ struct SubTopicView: View {
         NavigationStack {
             GeometryReader { screen in
                 ZStack {
+                    
                     VStack {
                         
                         switch localVM.subtopicViewState {
@@ -188,14 +189,14 @@ struct SubTopicView: View {
                                                 Answer(text: "Mauvaise réponse", isTrue: false),
                                                 Answer(text: "Mauvaise réponse", isTrue: false)
                                             ],
-                                                     isSolved: false, type: .qcm),
+                                                     isSolved: false),
                                             Question(question: "Question 2", image: "", explanation: "", answers: [
                                                 Answer(text: "Bonne réponse", isTrue: true),
                                                 Answer(text: "Mauvaise réponse", isTrue: false),
                                                 Answer(text: "Mauvaise réponse", isTrue: false),
                                                 Answer(text: "Mauvaise réponse", isTrue: false)
                                             ],
-                                                     isSolved: false, type: .qcm)
+                                                     isSolved: false)
                                         ],
                                     isSolved: false), onComplete: {_ in })
     .environmentObject(AppViewModel())

@@ -7,16 +7,11 @@
 
 import SwiftUI
 
-enum QuestionState {
-    case isSelected
-    case isValid
-    case isWrong
-    case isNeutral
-}
-
 struct QuestionQCMView: View {
     
     @ObservedObject var vm = AppViewModel.shared
+    
+    @StateObject var resultOverlayViewModel = ResultOverlayViewModel()
     
     @StateObject var localVM = QuestionViewModel()
     
@@ -45,6 +40,12 @@ struct QuestionQCMView: View {
                         validationButtonActions()
                     }
             }
+            
+            if localVM.showResultOverlay {
+                ResultOverlay(explanation: question.explanation, questionState: localVM.questionState) {
+                    validationButtonActions()
+                }
+            }
         }
     }
     
@@ -56,7 +57,6 @@ struct QuestionQCMView: View {
             withAnimation(.bouncy) {
                 localVM.selectedAnswers.removeAll()
                 localVM.questionState = .isNeutral
-                localVM.isMoveToNextPageButtonAppears = false
                 localVM.showResultOverlay = false
                 action2()
             }
@@ -77,7 +77,7 @@ struct QuestionQCMView: View {
             withAnimation(.snappy) {
                 action1()
                 localVM.showResultOverlay.toggle()
-                localVM.updateResultOverlay()
+                localVM.toggleResultOverlay()
             }
         } else {
             localVM.questionState = .isWrong
@@ -85,7 +85,7 @@ struct QuestionQCMView: View {
             withAnimation(.snappy) {
                 action1()
                 localVM.showResultOverlay.toggle()
-                localVM.updateResultOverlay()
+                localVM.toggleResultOverlay()
             }
         }
     }
@@ -114,12 +114,11 @@ struct QuestionQCMView: View {
     }
     
     var AnswerField : some View {
-        ForEach(question.answers, id: \.id) { answer in
+        ForEach(question.answers) { answer in
             answerButton(for: answer)
         }
         .disabled(localVM.questionState == .isValid || localVM.questionState == .isWrong)
     }
-
 }
 
 #Preview {
@@ -132,8 +131,7 @@ struct QuestionQCMView: View {
             Answer(text: "Beige", isTrue: false),
             Answer(text: "Noir", isTrue: false)
         ],
-        isSolved: false,
-        type: .qcm
+        isSolved: false
     ), result: .constant(false), action1: {}, action2: {}
     )
 }
