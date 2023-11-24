@@ -30,12 +30,12 @@ class SubTopicViewModel : ObservableObject {
     // Handle the nav from one question to the other
     @Published var currentQuestionIndex: Int = 0
     
-    var currentQuestion: Question {
+    var currentQuestion: any Question {
         pendingQuestions[currentQuestionIndex]
     }
     
-    var pendingQuestions: [Question] // Questions yet to be answered
-    var errorQuestions: [Question] = [] // Questions answered incorrectly
+    var pendingQuestions: [any Question] // Questions yet to be answered
+    var errorQuestions: [any Question] = [] // Questions answered incorrectly
     
     
     // STATS FOR THE RESULT VIEW
@@ -102,7 +102,7 @@ class SubTopicViewModel : ObservableObject {
     }
     
     
-    func checkResult(for question: Question) {
+    func checkResult(for question: any Question) {
         if questionViewResult == true {
             // Answer is correct, proceed normally
             answeredQuestionsCount += 1

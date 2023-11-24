@@ -15,7 +15,7 @@ struct QuestionQCMView: View {
     
     @StateObject var localVM = QuestionViewModel()
     
-    let question : Question
+    let question : QCMQuestion
     
     @Binding var result : Bool? // Send the result of the question back to the subTopicView
     @State var action1 : () -> Void // CheckResult
@@ -122,7 +122,7 @@ struct QuestionQCMView: View {
 }
 
 #Preview {
-    QuestionQCMView(question: Question(
+    QuestionQCMView(question: QCMQuestion(
         question: "Quelle est la couleur du cheval blanc d'Henri IV ?", image: "",
         explanation: "La réponse est dans la question, La réponse est dans la question",
         answers: [

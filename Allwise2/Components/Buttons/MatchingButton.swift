@@ -14,42 +14,31 @@ struct MatchingButton: View {
     
     var body: some View {
         Button(action: action) {
-            Text(content)
-                .foregroundColor(.black)
-                .frame(width: 120, height: 90)
-                .background(backgroundColor(state: state))
+            Text(content)   
+                .fixedSize(horizontal: false, vertical: true) // Allow text to wrap and expand vertically.
+                .padding(.horizontal) // Add horizontal padding.
+                .foregroundStyle(state == .isValid ? .duoGreen : state == .isWrong ? .duoRed : .primary)
+                .frame(maxWidth: .infinity, minHeight: 50, maxHeight: 100)
+                .background(color(state: state).opacity(0.2))
                 .cornerRadius(15)
                 .overlay(
                     RoundedRectangle(cornerRadius: 15)
-                        .stroke(borderColor(state: state), lineWidth: 2)
+                        .stroke(color(state: state), lineWidth: 2)
                 )
         }
         .disabled(state == .isValid)
     }
     
-    private func backgroundColor(state: QuestionState) -> Color {
+    private func color(state: QuestionState) -> Color {
         switch state {
         case .isNeutral:
-            return .white
+            return .paleGray
         case .isSelected:
-            return .blue.opacity(0.2) // Adjust the opacity for better visibility
+            return .duoBlue // Adjust the opacity for better visibility
         case .isValid:
-            return .green.opacity(0.2)
+            return .duoGreen
         case .isWrong:
-            return .red.opacity(0.2)
-        }
-    }
-    
-    private func borderColor(state: QuestionState) -> Color {
-        switch state {
-        case .isNeutral:
-            return .gray
-        case .isSelected:
-            return .blue
-        case .isValid:
-            return .green
-        case .isWrong:
-            return .red
+            return .duoRed
         }
     }
 }

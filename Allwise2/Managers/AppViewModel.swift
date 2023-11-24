@@ -83,7 +83,7 @@ class AppViewModel : ObservableObject {
      }
         
     // Function to get questions for a specific subtopic
-    func questions(forSubTopicId subTopicId: UUID) -> [Question] {
+    func questions(forSubTopicId subTopicId: UUID) -> [any Question] {
         for topic in topics {
             if let subTopic = topic.subtopics.first(where: { $0.id == subTopicId }) {
                 return subTopic.questions
@@ -200,7 +200,7 @@ class AppViewModel : ObservableObject {
     // EXTRA RESEARCH FONCTION
     
     // Find a question from it's UUID.
-    func findQuestion(for questionId: UUID) -> Question? {
+    func findQuestion(for questionId: UUID) -> (any Question)? {
         for lesson in lessons {
             for topic in lesson.topics {
                 for subTopic in topic.subtopics {

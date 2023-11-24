@@ -14,7 +14,13 @@ struct Answer: Identifiable {
     let isTrue: Bool
 }
 
-struct Question: Identifiable {
+protocol Question : Identifiable {
+    var id: UUID { get }
+    var isSolved: Bool { get set }
+}
+
+// Structure for QCM question
+struct QCMQuestion: Question {
     let id = UUID()
     let question: String
     let image: String
@@ -23,10 +29,25 @@ struct Question: Identifiable {
     var isSolved: Bool
 }
 
+struct MatchingQuestion: Question {
+    let id = UUID()
+    var questions : [QuestionAnswerPair]
+    var isSolved: Bool
+}
+
+// Structure for question-answer pairs
+struct QuestionAnswerPair : Identifiable {
+    let id = UUID()
+    var question: String
+    var answer: String
+    var questionState: QuestionState = .isNeutral
+    var answerState: QuestionState = .isNeutral
+}
+
 struct SubTopic: Identifiable {
     let id = UUID()
     let name: String
-    var questions: [Question]
+    var questions: [any Question]
     var isSolved: Bool
 }
 

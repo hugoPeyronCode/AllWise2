@@ -17,6 +17,7 @@ struct SubTopicView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var showQuitOverlay = false
+    @State private var showResultOverlay = false
     
     var onComplete: (Bool) -> Void
     @State private var backToTopicView = false
@@ -41,10 +42,23 @@ struct SubTopicView: View {
                         case .triggerResultView:
                             ResultViewField
                         case .triggerQuestionView:
-                            QuestionViewField
-                                .disabled(disableAllView)
+                            if let qcmQuestion = localVM.currentQuestion as? QCMQuestion {
+                                QuestionQCMView(question: qcmQuestion,
+                                                result: $localVM.questionViewResult,
+                                                action1: {localVM.checkResult(for: localVM.currentQuestion)},
+                                                action2: localVM.moveToNextQuestion
+                                )
+                                
+                               } else if let matchingQuestion = localVM.currentQuestion as? MatchingQuestion {
+                                   MatchingView(matchingQuestion: matchingQuestion, result: $localVM.questionViewResult, action: localVM.moveToNextQuestion)
+                               }
                         }
                     }
+                    .environmentObject(vm)
+                    .id(localVM.currentQuestion.id)
+                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                    .animation(.bouncy, value: localVM.currentQuestion.id)
+                    .disabled(showQuitOverlay)
                     
                     if showQuitOverlay {
                         Color.reverseWhite.opacity(0.3)
@@ -143,18 +157,6 @@ struct SubTopicView: View {
         .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
     }
     
-    var QuestionViewField : some View {
-        QuestionQCMView(question: localVM.currentQuestion,
-                     result: $localVM.questionViewResult,
-                     action1: { localVM.checkResult(for: localVM.currentQuestion)},
-                     action2: localVM.moveToNextQuestion)
-        
-        .environmentObject(vm)
-        .id(localVM.currentQuestion.id)
-        .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
-        .animation(.bouncy, value: localVM.currentQuestion.id)
-        .disabled(showQuitOverlay)
-    }
     
     var ResultViewField : some View {
         
@@ -183,14 +185,15 @@ struct SubTopicView: View {
     SubTopicView(subTopic: SubTopic(name: "1",
                                     questions:
                                         [
-                                            Question(question: "Question 1", image: "", explanation: "", answers: [
+                                            MatchingQuestion(questions: [], isSolved: false),
+                                            QCMQuestion(question: "Question 1", image: "", explanation: "", answers: [
                                                 Answer(text: "Bonne réponse", isTrue: true),
                                                 Answer(text: "Mauvaise réponse", isTrue: false),
                                                 Answer(text: "Mauvaise réponse", isTrue: false),
                                                 Answer(text: "Mauvaise réponse", isTrue: false)
                                             ],
                                                      isSolved: false),
-                                            Question(question: "Question 2", image: "", explanation: "", answers: [
+                                            QCMQuestion(question: "Question 2", image: "", explanation: "", answers: [
                                                 Answer(text: "Bonne réponse", isTrue: true),
                                                 Answer(text: "Mauvaise réponse", isTrue: false),
                                                 Answer(text: "Mauvaise réponse", isTrue: false),

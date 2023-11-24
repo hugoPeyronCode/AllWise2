@@ -10,55 +10,106 @@ import SwiftUI
 struct MatchingView: View {
     @ObservedObject var vm : MatchingViewModel
     
-    @State private var shuffledQuestions: [QuestionAnswerPair] = []
-    @State private var shuffledAnswers: [QuestionAnswerPair] = []
-
-    init(vm: MatchingViewModel) {
-        _vm = ObservedObject(initialValue: vm)
-        _shuffledQuestions = State(initialValue: vm.pairs.shuffled())
-        _shuffledAnswers = State(initialValue: vm.pairs.shuffled())
+    init(matchingQuestion: MatchingQuestion, result: Binding<Bool?>, action: @escaping () -> Void) {
+        let viewModel = MatchingViewModel(matchingQuestion: matchingQuestion)
+        _vm = ObservedObject(wrappedValue: viewModel)
+        _result = result
+        self.action = action
     }
     
+    @Binding var result : Bool?
+    
+    var action : () -> Void
+    
     var body: some View {
-        VStack {
-            HStack {
-                VStack {
-                    ForEach(shuffledQuestions) { pair in
-                        MatchingButton(
-                            content: pair.question,
-                            state: vm.pairs.first(where: { $0.id == pair.id })?.questionState ?? .isNeutral
-                        ) {
-                            vm.selectQuestion(pair.id)
-                        }
-                    }
+        ZStack {
+            VStack {
+                
+                Text("Match The Pairs")
+                    .bold()
+                    .font(.title)
+                    .fontDesign(.rounded)
+                    .padding()
+                
+                Spacer()
+                
+                HStack() {
+                    Spacer()
+                    QuestionButtonView(questionPairs: vm.shuffledQuestions, selectQuestion: vm.selectQuestion)
+                    Spacer()
+                    AnswerButtonView(answerPairs: vm.shuffledAnswers, selectAnswer: vm.selectAnswer)
+                    Spacer()
                 }
                 
-                VStack {
-                    ForEach(shuffledAnswers) { pair in
-                        MatchingButton(
-                            content: pair.answer,
-                            state: vm.pairs.first(where: { $0.id == pair.id })?.answerState ?? .isNeutral
-                        ) {
-                            vm.selectAnswer(pair.id)
-                        }
+                .onChange(of: vm.selectedQuestionID) { newValue in
+                    vm.checkMatch()
+                }
+                .onChange(of: vm.selectedAnswerID) { newValue in
+                    vm.checkMatch()
+                }
+                
+                Spacer()
+                
+                ValidationButton(questionState: vm.gameState) {
+                    if vm.gameState == .isValid {
+                        vm.showResultOverlay = true
                     }
                 }
             }
-            .onChange(of: vm.selectedQuestionID) { newValue in
-                vm.checkMatch()
-            }
-            .onChange(of: vm.selectedAnswerID) { newValue in
-                vm.checkMatch()
-            }
             
-            ValidationButton(questionState: vm.gameState, action: {
-                vm.resetGame()
-            })
-            
+            if vm.showResultOverlay {
+                ResultOverlay(explanation: "You've matched all pairs!", questionState: .isValid) {
+                    result = true
+                    action()
+                }
+            }
         }
     }
 }
 
 #Preview {
-    MatchingView(vm: MatchingViewModel())
+    MatchingView(matchingQuestion: MatchingQuestion(questions: [
+        QuestionAnswerPair(question: "Question1", answer: "Answer1", questionState: .isNeutral, answerState: .isNeutral),
+        QuestionAnswerPair(question: "Question2kjgkjgkjgkjgjkhg kjhgjhgjh jhgjhg", answer: "Answer2lhkjhkjhkjh ghjgjhg ", questionState: .isNeutral, answerState: .isNeutral),
+        QuestionAnswerPair(question: "Question3 jhgjhgjh", answer: "Answer3 jhghgjhg", questionState: .isNeutral, answerState: .isNeutral),
+        QuestionAnswerPair(question: "Question4hgjhgj ", answer: "Answer4jhg jh", questionState: .isNeutral, answerState: .isNeutral),
+        QuestionAnswerPair(question: "Question5", answer: "Answer5", questionState: .isNeutral, answerState: .isNeutral)
+    ], isSolved: false), result: .constant(false)){}
+}
+
+
+struct QuestionButtonView: View {
+    var questionPairs: [QuestionAnswerPair]
+    var selectQuestion: (UUID) -> Void
+    
+    var body: some View {
+        VStack {
+            ForEach(questionPairs) { pair in
+                MatchingButton(
+                    content: pair.question,
+                    state: pair.questionState
+                ) {
+                    selectQuestion(pair.id)
+                }
+            }
+        }
+    }
+}
+
+struct AnswerButtonView: View {
+    var answerPairs: [QuestionAnswerPair]
+    var selectAnswer: (UUID) -> Void
+    
+    var body: some View {
+        VStack {
+            ForEach(answerPairs) { pair in
+                MatchingButton(
+                    content: pair.answer,
+                    state: pair.answerState
+                ) {
+                    selectAnswer(pair.id)
+                }
+            }
+        }
+    }
 }
