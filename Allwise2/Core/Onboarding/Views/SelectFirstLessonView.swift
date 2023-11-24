@@ -19,10 +19,7 @@ struct SelectFirstLessonView: View {
         VStack {
             
             Text("What would you like to learn?")
-                .font(.largeTitle)
-                .fontDesign(.rounded)
-                .bold()
-                .padding()
+                .pageTitleStyle()
             
             Spacer()
             // 10 lessons maximum for the stat.
@@ -57,4 +54,22 @@ struct SelectFirstLessonView: View {
 
 #Preview {
     SelectFirstLessonView()
+}
+
+
+
+struct PageTitleModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .fontDesign(.rounded)
+            .bold()
+            .padding()
+    }
+}
+
+extension View {
+    func pageTitleStyle() -> some View {
+        self.modifier(PageTitleModifier())
+    }
 }

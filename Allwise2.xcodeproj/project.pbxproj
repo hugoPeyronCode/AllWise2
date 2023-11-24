@@ -37,6 +37,11 @@
 		4399F4FA2AFE80E6007005B0 /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4399F4F92AFE80E6007005B0 /* CircularProgressBar.swift */; };
 		4399F4FC2AFE8F2A007005B0 /* QuestionQCMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4399F4FB2AFE8F2A007005B0 /* QuestionQCMView.swift */; };
 		4399F4FE2AFE9434007005B0 /* CustomProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4399F4FD2AFE9434007005B0 /* CustomProgressBar.swift */; };
+		43B2651E2B1115480014DC1B /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B2651D2B1115480014DC1B /* OnboardingView.swift */; };
+		43B265222B1115710014DC1B /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B265212B1115710014DC1B /* OnboardingViewModel.swift */; };
+		43B265242B1115D30014DC1B /* SelectFirstLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B265232B1115D30014DC1B /* SelectFirstLessonView.swift */; };
+		43B265262B11169B0014DC1B /* LessonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B265252B11169B0014DC1B /* LessonButton.swift */; };
+		43B265282B111D450014DC1B /* GeneralKnowledgeLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B265272B111D450014DC1B /* GeneralKnowledgeLevelView.swift */; };
 		43C6BBB92B050391003134C2 /* BuyNewLifesOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C6BBB82B050391003134C2 /* BuyNewLifesOverlay.swift */; };
 		43DCEEBF2B062030007858EE /* LifesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DCEEBE2B062030007858EE /* LifesManager.swift */; };
 		43F2F43B2B0E3EF200BF28AD /* MatchingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2F43A2B0E3EF200BF28AD /* MatchingViewModel.swift */; };
@@ -76,6 +81,11 @@
 		4399F4F92AFE80E6007005B0 /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		4399F4FB2AFE8F2A007005B0 /* QuestionQCMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionQCMView.swift; sourceTree = "<group>"; };
 		4399F4FD2AFE9434007005B0 /* CustomProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressBar.swift; sourceTree = "<group>"; };
+		43B2651D2B1115480014DC1B /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		43B265212B1115710014DC1B /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		43B265232B1115D30014DC1B /* SelectFirstLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFirstLessonView.swift; sourceTree = "<group>"; };
+		43B265252B11169B0014DC1B /* LessonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonButton.swift; sourceTree = "<group>"; };
+		43B265272B111D450014DC1B /* GeneralKnowledgeLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralKnowledgeLevelView.swift; sourceTree = "<group>"; };
 		43C6BBB82B050391003134C2 /* BuyNewLifesOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyNewLifesOverlay.swift; sourceTree = "<group>"; };
 		43DCEEBE2B062030007858EE /* LifesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifesManager.swift; sourceTree = "<group>"; };
 		43F2F43A2B0E3EF200BF28AD /* MatchingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewModel.swift; sourceTree = "<group>"; };
@@ -157,11 +167,11 @@
 			children = (
 				433AEF972AFE633300449F10 /* Allwise2App.swift */,
 				4378D20F2B0CBAEF00736633 /* HomeView.swift */,
-				433AEFA82AFE636900449F10 /* Core */,
-				433AEFA52AFE634D00449F10 /* Models */,
-				433AEFAD2AFE6AFC00449F10 /* Managers */,
-				4399F4F82AFE7CE1007005B0 /* Data */,
 				433AEFB22AFE723900449F10 /* Components */,
+				433AEFA82AFE636900449F10 /* Core */,
+				4399F4F82AFE7CE1007005B0 /* Data */,
+				433AEFAD2AFE6AFC00449F10 /* Managers */,
+				433AEFA52AFE634D00449F10 /* Models */,
 				433AEF9B2AFE633500449F10 /* Assets.xcassets */,
 				433AEF9D2AFE633500449F10 /* Preview Content */,
 			);
@@ -187,6 +197,7 @@
 		433AEFA82AFE636900449F10 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				43B2651C2B11152D0014DC1B /* Onboarding */,
 				43785F1E2B029395000BBD76 /* Lessons */,
 				433AEFB62AFE72F900449F10 /* Topics */,
 				43030A5B2AFFC65C00E4CA6B /* SubTopic */,
@@ -222,12 +233,13 @@
 		433AEFB32AFE723D00449F10 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				4347CEDE2B03BC37004531B4 /* ValidationButton.swift */,
-				433AEFB42AFE724900449F10 /* TopicButton.swift */,
-				4347CEE02B03BC87004531B4 /* SingleSelectButton.swift */,
 				438242442B04E11500CC321C /* ContinueButton.swift */,
-				43057A772B06511800292548 /* SmallNavButton.swift */,
+				43B265252B11169B0014DC1B /* LessonButton.swift */,
 				43F2F45A2B0F654100BF28AD /* MatchingButton.swift */,
+				4347CEE02B03BC87004531B4 /* SingleSelectButton.swift */,
+				43057A772B06511800292548 /* SmallNavButton.swift */,
+				433AEFB42AFE724900449F10 /* TopicButton.swift */,
+				4347CEDE2B03BC37004531B4 /* ValidationButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -351,6 +363,33 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		43B2651C2B11152D0014DC1B /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				43B2651F2B11154F0014DC1B /* Views */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		43B2651F2B11154F0014DC1B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				43B265202B11155E0014DC1B /* ViewModel */,
+				43B2651D2B1115480014DC1B /* OnboardingView.swift */,
+				43B265232B1115D30014DC1B /* SelectFirstLessonView.swift */,
+				43B265272B111D450014DC1B /* GeneralKnowledgeLevelView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		43B265202B11155E0014DC1B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				43B265212B1115710014DC1B /* OnboardingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		43F2F4392B0E3EDF00BF28AD /* Matching */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,8 +472,11 @@
 				43057A742B062DC600292548 /* UserDashboardView.swift in Sources */,
 				433AEFB52AFE724900449F10 /* TopicButton.swift in Sources */,
 				438242452B04E11500CC321C /* ContinueButton.swift in Sources */,
+				43B265282B111D450014DC1B /* GeneralKnowledgeLevelView.swift in Sources */,
 				4351DF662B079AE800D441E9 /* ColorsExtensions.swift in Sources */,
 				4378D2122B0CBED300736633 /* ResultOverlayViewModel.swift in Sources */,
+				43B265262B11169B0014DC1B /* LessonButton.swift in Sources */,
+				43B265222B1115710014DC1B /* OnboardingViewModel.swift in Sources */,
 				43C6BBB92B050391003134C2 /* BuyNewLifesOverlay.swift in Sources */,
 				43F2F45B2B0F654100BF28AD /* MatchingButton.swift in Sources */,
 				43F2F4592B0E6DB000BF28AD /* MatchView.swift in Sources */,
@@ -442,9 +484,11 @@
 				4347CEDF2B03BC37004531B4 /* ValidationButton.swift in Sources */,
 				4382423C2B04C1EC00CC321C /* ErrorsView.swift in Sources */,
 				438242432B04DCED00CC321C /* ResultViewViewModel.swift in Sources */,
+				43B265242B1115D30014DC1B /* SelectFirstLessonView.swift in Sources */,
 				43DCEEBF2B062030007858EE /* LifesManager.swift in Sources */,
 				43057A782B06511800292548 /* SmallNavButton.swift in Sources */,
 				4399F4FE2AFE9434007005B0 /* CustomProgressBar.swift in Sources */,
+				43B2651E2B1115480014DC1B /* OnboardingView.swift in Sources */,
 				4382423E2B04D76F00CC321C /* ResultView.swift in Sources */,
 				4347CEE52B03CE15004531B4 /* QuitQuestionViewOverlay.swift in Sources */,
 				433AEFB12AFE6B5800449F10 /* MockData.swift in Sources */,
