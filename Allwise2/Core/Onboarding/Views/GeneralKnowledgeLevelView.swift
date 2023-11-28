@@ -18,6 +18,9 @@ struct GeneralKnowledgeLevelView: View {
     
     // State to keep track of the selected option
     @State private var selectedOptionIndex: Int? = nil
+    
+    var action: () -> Void
+
 
     var body: some View {
         VStack {
@@ -29,15 +32,15 @@ struct GeneralKnowledgeLevelView: View {
             
             // Loop through the options to create buttons
             ForEach(Array(options.enumerated()), id: \.offset) { index, option in
-                  MultiSelectionButton(content: option.0, icon: "chart.bar.fill", variableValue: option.1, isSelected: index == selectedOptionIndex) {
+                MultiSelectionButton(content: option.0, icon: "chart.bar.fill", emoji: "", variableValue: option.1, isSelected: index == selectedOptionIndex) {
                       self.selectedOptionIndex = index
                   }
               }
             
             Spacer()
             
-            ValidationButton(questionState: selectedOptionIndex != nil ? .isValid : .isNeutral) {
-                // move to the next page
+            ValidationButton(questionState: selectedOptionIndex != nil ? .isValid : .isNeutral, isCheckingForLifesCount: false) {
+                action()
             }
         }
     }
@@ -47,6 +50,7 @@ struct MultiSelectionButton: View {
     
     let content: String
     let icon : String
+    let emoji : String
     let variableValue : CGFloat
     var isSelected: Bool
     var action: () -> Void
@@ -54,11 +58,20 @@ struct MultiSelectionButton: View {
     var body: some View {
         HStack {
             HStack {
-                Image(systemName: icon, variableValue: variableValue)
-                    .imageScale(.large) // Adjust size
-                    .symbolRenderingMode(.palette)
-                    .foregroundStyle(Color.duoBlue)
-                    .font(.largeTitle)
+                
+                if emoji.count > 0 {
+                    Text(emoji)
+                        .font(.title3)
+                        .bold()
+                        .fontDesign(.rounded)
+                } else {
+                    Image(systemName: icon, variableValue: variableValue)
+                        .imageScale(.large) // Adjust size
+                        .symbolRenderingMode(.palette)
+                        .foregroundStyle(Color.duoBlue)
+                        .font(.largeTitle)
+                }
+
                 Text(content)
                     .font(.title3)
                     .bold()
@@ -85,10 +98,10 @@ struct MultiSelectionButton: View {
 
 
 #Preview {
-    GeneralKnowledgeLevelView()
+    GeneralKnowledgeLevelView(){}
 }
 
 
 #Preview {
-    MultiSelectionButton(content: "Super easy", icon: "chart.bar.fill", variableValue: 0.5, isSelected: false) {}
+    MultiSelectionButton(content: "Super easy", icon: "chart.bar.fill", emoji: "", variableValue: 0.5, isSelected: false) {}
 }

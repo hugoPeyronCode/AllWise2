@@ -36,7 +36,7 @@ struct QuestionQCMView: View {
                 
                 Spacer()
                 
-                ValidationButton(questionState: localVM.questionState) {
+                ValidationButton(questionState: localVM.questionState, isCheckingForLifesCount: true) {
                         validationButtonActions()
                     }
             }

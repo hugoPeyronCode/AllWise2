@@ -36,7 +36,7 @@ struct ResultOverlay: View {
                     .font(.body)
                     .padding()
                 
-                ValidationButton(questionState: questionState) {
+                ValidationButton(questionState: questionState, isCheckingForLifesCount: true) {
                     if lifesManager.hasEnoughLifes {
                         actions()
                     } else {

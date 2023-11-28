@@ -42,6 +42,9 @@
 		43B265242B1115D30014DC1B /* SelectFirstLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B265232B1115D30014DC1B /* SelectFirstLessonView.swift */; };
 		43B265262B11169B0014DC1B /* LessonButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B265252B11169B0014DC1B /* LessonButton.swift */; };
 		43B265282B111D450014DC1B /* GeneralKnowledgeLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B265272B111D450014DC1B /* GeneralKnowledgeLevelView.swift */; };
+		43B2652C2B11543C0014DC1B /* SelfImprovementReasonsVie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B2652B2B11543C0014DC1B /* SelfImprovementReasonsVie.swift */; };
+		43B2652E2B1159C60014DC1B /* WhatYouCanAchieveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B2652D2B1159C60014DC1B /* WhatYouCanAchieveView.swift */; };
+		43B265302B11637B0014DC1B /* Transitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B2652F2B11637B0014DC1B /* Transitions.swift */; };
 		43C6BBB92B050391003134C2 /* BuyNewLifesOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C6BBB82B050391003134C2 /* BuyNewLifesOverlay.swift */; };
 		43DCEEBF2B062030007858EE /* LifesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DCEEBE2B062030007858EE /* LifesManager.swift */; };
 		43F2F43B2B0E3EF200BF28AD /* MatchingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2F43A2B0E3EF200BF28AD /* MatchingViewModel.swift */; };
@@ -86,6 +89,9 @@
 		43B265232B1115D30014DC1B /* SelectFirstLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFirstLessonView.swift; sourceTree = "<group>"; };
 		43B265252B11169B0014DC1B /* LessonButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonButton.swift; sourceTree = "<group>"; };
 		43B265272B111D450014DC1B /* GeneralKnowledgeLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralKnowledgeLevelView.swift; sourceTree = "<group>"; };
+		43B2652B2B11543C0014DC1B /* SelfImprovementReasonsVie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfImprovementReasonsVie.swift; sourceTree = "<group>"; };
+		43B2652D2B1159C60014DC1B /* WhatYouCanAchieveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatYouCanAchieveView.swift; sourceTree = "<group>"; };
+		43B2652F2B11637B0014DC1B /* Transitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitions.swift; sourceTree = "<group>"; };
 		43C6BBB82B050391003134C2 /* BuyNewLifesOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyNewLifesOverlay.swift; sourceTree = "<group>"; };
 		43DCEEBE2B062030007858EE /* LifesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifesManager.swift; sourceTree = "<group>"; };
 		43F2F43A2B0E3EF200BF28AD /* MatchingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewModel.swift; sourceTree = "<group>"; };
@@ -167,6 +173,7 @@
 			children = (
 				433AEF972AFE633300449F10 /* Allwise2App.swift */,
 				4378D20F2B0CBAEF00736633 /* HomeView.swift */,
+				4351DF642B079ADE00D441E9 /* Extensions */,
 				433AEFB22AFE723900449F10 /* Components */,
 				433AEFA82AFE636900449F10 /* Core */,
 				4399F4F82AFE7CE1007005B0 /* Data */,
@@ -224,7 +231,6 @@
 				4382423A2B04C1DA00CC321C /* ExtraViews */,
 				4347CEE32B03BCC7004531B4 /* ProgressBars */,
 				4347CEE22B03BCC2004531B4 /* Overlays */,
-				4351DF642B079ADE00D441E9 /* Extensions */,
 				433AEFB32AFE723D00449F10 /* Buttons */,
 			);
 			path = Components;
@@ -276,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				4351DF652B079AE800D441E9 /* ColorsExtensions.swift */,
+				43B2652F2B11637B0014DC1B /* Transitions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -378,6 +385,8 @@
 				43B2651D2B1115480014DC1B /* OnboardingView.swift */,
 				43B265232B1115D30014DC1B /* SelectFirstLessonView.swift */,
 				43B265272B111D450014DC1B /* GeneralKnowledgeLevelView.swift */,
+				43B2652B2B11543C0014DC1B /* SelfImprovementReasonsVie.swift */,
+				43B2652D2B1159C60014DC1B /* WhatYouCanAchieveView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -472,6 +481,7 @@
 				43057A742B062DC600292548 /* UserDashboardView.swift in Sources */,
 				433AEFB52AFE724900449F10 /* TopicButton.swift in Sources */,
 				438242452B04E11500CC321C /* ContinueButton.swift in Sources */,
+				43B265302B11637B0014DC1B /* Transitions.swift in Sources */,
 				43B265282B111D450014DC1B /* GeneralKnowledgeLevelView.swift in Sources */,
 				4351DF662B079AE800D441E9 /* ColorsExtensions.swift in Sources */,
 				4378D2122B0CBED300736633 /* ResultOverlayViewModel.swift in Sources */,
@@ -494,7 +504,9 @@
 				433AEFB12AFE6B5800449F10 /* MockData.swift in Sources */,
 				4378D2102B0CBAEF00736633 /* HomeView.swift in Sources */,
 				433AEFA72AFE635500449F10 /* Models.swift in Sources */,
+				43B2652E2B1159C60014DC1B /* WhatYouCanAchieveView.swift in Sources */,
 				433AEFBB2AFE748C00449F10 /* SubTopicView.swift in Sources */,
+				43B2652C2B11543C0014DC1B /* SelfImprovementReasonsVie.swift in Sources */,
 				43785F222B0293AD000BBD76 /* SelectLessonsView.swift in Sources */,
 				43030A5D2AFFC66900E4CA6B /* SubTopicViewModel.swift in Sources */,
 				43057A762B062E6700292548 /* UserManager.swift in Sources */,

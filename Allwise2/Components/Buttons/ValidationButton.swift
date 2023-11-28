@@ -10,8 +10,8 @@ import SwiftUI
 struct ValidationButton : View {
     
     @ObservedObject var lifesManager = LifesManager.shared
-    
     var questionState: QuestionState
+    let isCheckingForLifesCount: Bool
     var action : () -> Void
     
     @State private var offset: CGFloat = 2
@@ -45,10 +45,15 @@ struct ValidationButton : View {
                     
                     withAnimation(.snappy){
                         self.offset = 2
-                        if lifesManager.hasEnoughLifes {
-                            action()
+                        
+                        if isCheckingForLifesCount{
+                            if lifesManager.hasEnoughLifes {
+                                action()
+                            } else {
+                                lifesManager.triggerModal = true
+                            }
                         } else {
-                            lifesManager.triggerModal = true
+                            action()
                         }
                     }
                     
@@ -98,5 +103,5 @@ struct ValidationButton : View {
 }
 
 #Preview {
-    ValidationButton(questionState: .isWrong, action: {})
+    ValidationButton(questionState: .isWrong, isCheckingForLifesCount: false, action: {})
 }

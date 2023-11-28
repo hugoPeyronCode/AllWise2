@@ -15,6 +15,8 @@ struct SelectFirstLessonView: View {
     @State private var isSelected : Bool = false
     @State private var selectedLessonIds : [UUID] = []
     
+    var action: () -> Void
+    
     var body: some View {
         VStack {
             
@@ -25,20 +27,20 @@ struct SelectFirstLessonView: View {
             // 10 lessons maximum for the stat.
             ScrollView {
                 ForEach(lessons) { lesson in
-                        LessonButton(lesson: lesson, isSelected: selectedLessonIds.contains(lesson.id), isProgressShown: false) {
-                            if let index = selectedLessonIds.firstIndex(of: lesson.id) {
-                                selectedLessonIds.remove(at: index)
-                            } else {
-                                selectedLessonIds.append(lesson.id)
-                            }
+                    LessonButton(lesson: lesson, isSelected: selectedLessonIds.contains(lesson.id), isProgressShown: false) {
+                        if let index = selectedLessonIds.firstIndex(of: lesson.id) {
+                            selectedLessonIds.remove(at: index)
+                        } else {
+                            selectedLessonIds.append(lesson.id)
+                        }
                     }
                     .padding(.top,3)
                 }
             }
             Spacer()
             
-            ValidationButton(questionState: State() ) {
-                //
+            ValidationButton(questionState: State(), isCheckingForLifesCount: false ) {
+                action()
             }
         }
     }
@@ -53,7 +55,7 @@ struct SelectFirstLessonView: View {
 }
 
 #Preview {
-    SelectFirstLessonView()
+    SelectFirstLessonView(){}
 }
 
 

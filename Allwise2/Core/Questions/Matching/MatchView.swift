@@ -50,7 +50,7 @@ struct MatchingView: View {
                 
                 Spacer()
                 
-                ValidationButton(questionState: vm.gameState) {
+                ValidationButton(questionState: vm.gameState, isCheckingForLifesCount: true) {
                     if vm.gameState == .isValid {
                         vm.showResultOverlay = true
                     }
