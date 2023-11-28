@@ -16,6 +16,8 @@ struct WhatYouCanAchieveView: View {
         ("Boost Cognitive Abilities", "🧠")
     ]
     
+    @Environment(\.dismiss) private var dismiss
+    
     var action: () -> Void
     
     var body: some View {
@@ -32,7 +34,7 @@ struct WhatYouCanAchieveView: View {
             Spacer()
             
             ValidationButton(questionState: .isValid, isCheckingForLifesCount: false) {
-                action()
+                dismiss()
             }
             
         }

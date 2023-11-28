@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct ErrorsView: View {
-    
-//    @Environment(\.dismiss) private var dismiss
-    
+        
     @State var action : () -> Void
     
     var body: some View {

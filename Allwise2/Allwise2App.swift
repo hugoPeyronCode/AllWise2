@@ -10,11 +10,18 @@ import SwiftUI
 @main
 struct Allwise2App: App {
     
-    
+    @AppStorage("isShowingOnboarding") var isShowingOnboarding : Bool = true
     
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .fullScreenCover(isPresented: $isShowingOnboarding) {
+                    OnboardingView()                        
+                        .onDisappear {
+                            isShowingOnboarding = false
+                        }
+                }
+            
         }
     }
 }
