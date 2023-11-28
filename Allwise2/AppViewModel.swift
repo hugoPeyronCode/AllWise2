@@ -15,7 +15,6 @@ class AppViewModel : ObservableObject {
     @Published var lessons : [Lesson] = mockData // Main array of data. Contain all the lessons, topics, subtopics, questions, answers
     
     // QUESTIONS
-    
     // Function to find a question in a subTopic from its ID
     
     // Function to mark a question as solved
@@ -26,7 +25,7 @@ class AppViewModel : ObservableObject {
                     if let questionIndex = lessons[lessonIndex].topics[topicIndex].subtopics[subTopicIndex].questions.firstIndex(where: { $0.id == questionId }) {
                         // Mark the question as solved
                         lessons[lessonIndex].topics[topicIndex].subtopics[subTopicIndex].questions[questionIndex].isSolved = true
-                        print("question marked as solved")
+                        print(" Question marked as solved")
                         // If needed, perform additional actions, such as marking subtopic as solved if all questions are solved
                         updateSubTopicStateIfNeeded(forLesson: lessonIndex, forTopic: topicIndex, forSubTopic: subTopicIndex)
                         print("updated \(topics[topicIndex].name) state")
@@ -47,12 +46,14 @@ class AppViewModel : ObservableObject {
     
     // Function to get the number of all questions solved
     func totalNumberOfSolvedQuestions() -> Int {
+        
         var solvedQuestionsCount = 0
 
         for lesson in lessons {
             for topic in lesson.topics {
                 for subTopic in topic.subtopics {
                     solvedQuestionsCount += subTopic.questions.filter { $0.isSolved }.count
+                    print("SolvedQuestionCount for \(lesson.name) \(topic.name) \(subTopic.name) = \(solvedQuestionsCount)")
                 }
             }
         }

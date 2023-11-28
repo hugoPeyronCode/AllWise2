@@ -42,6 +42,7 @@ class SubTopicViewModel : ObservableObject {
     // Accuracy
     @Published var correctAnswersCount = 0
     @Published var incorrectAnswersCount = 0
+    
     var accuracy: Double {
         let totalAnswered = correctAnswersCount + incorrectAnswersCount
         return totalAnswered > 0 ? Double(correctAnswersCount) / Double(totalAnswered) : 1.0
@@ -101,12 +102,12 @@ class SubTopicViewModel : ObservableObject {
         }
     }
     
-    
     func checkResult(for question: any Question) {
         if questionViewResult == true {
             // Answer is correct, proceed normally
             answeredQuestionsCount += 1
             correctAnswersCount += 1
+            print("subtopic check result trigged. Answer Question Count: \(answeredQuestionsCount)")
         } else {
             if lifesManager.hasEnoughLifes {
                 lifesManager.loseAlife()
@@ -128,7 +129,6 @@ class SubTopicViewModel : ObservableObject {
         let totalQuestions = subTopic.questions.count
         subTopicProgress = totalQuestions > 0 ? Float(answeredQuestionsCount) / Float(totalQuestions) : 0
     }
-    
     
     // Time TRACKING FUCNTIONS
     // Start the timer when the subtopic session starts

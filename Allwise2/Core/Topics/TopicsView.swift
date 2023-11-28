@@ -25,7 +25,9 @@ struct TopicsView: View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVStack(spacing: 30) {
                     ForEach(lesson.topics, id: \.id) { topic in
-                        TopicButton(topic: topic, lessonColor: lesson.color) {
+                        TopicButton(
+                            topic: topic,
+                            lessonColor: lesson.color) {
                             selectedSubTopic = vm.firstUnsolvedSubTopic(topicId: topic.id)
                             isNavToSubTopicView = selectedSubTopic != nil
                         }

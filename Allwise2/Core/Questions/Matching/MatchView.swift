@@ -10,16 +10,20 @@ import SwiftUI
 struct MatchingView: View {
     @ObservedObject var vm : MatchingViewModel
     
-    init(matchingQuestion: MatchingQuestion, result: Binding<Bool?>, action: @escaping () -> Void) {
+    init(matchingQuestion: MatchingQuestion, result: Binding<Bool?>, checkResult: @escaping () -> Void, moveToNextQuestion: @escaping () -> Void) {
         let viewModel = MatchingViewModel(matchingQuestion: matchingQuestion)
         _vm = ObservedObject(wrappedValue: viewModel)
         _result = result
-        self.action = action
+        self.checkResult = checkResult
+        self.moveToNextQuestion = moveToNextQuestion
     }
     
     @Binding var result : Bool?
     
-    var action : () -> Void
+    @State var checkResult : () -> Void
+    
+    var moveToNextQuestion : () -> Void
+    
     
     var body: some View {
         ZStack {
@@ -59,8 +63,10 @@ struct MatchingView: View {
             
             if vm.showResultOverlay {
                 ResultOverlay(explanation: "You've matched all pairs!", questionState: .isValid) {
+                    checkResult()
+                    vm.markQuestionAsSolved()
                     result = true
-                    action()
+                    moveToNextQuestion()
                 }
             }
         }
@@ -74,7 +80,7 @@ struct MatchingView: View {
         QuestionAnswerPair(question: "Question3 jhgjhgjh", answer: "Answer3 jhghgjhg", questionState: .isNeutral, answerState: .isNeutral),
         QuestionAnswerPair(question: "Question4hgjhgj ", answer: "Answer4jhg jh", questionState: .isNeutral, answerState: .isNeutral),
         QuestionAnswerPair(question: "Question5", answer: "Answer5", questionState: .isNeutral, answerState: .isNeutral)
-    ], isSolved: false), result: .constant(false)){}
+    ], isSolved: false), result: .constant(false)){} moveToNextQuestion: {}
 }
 
 

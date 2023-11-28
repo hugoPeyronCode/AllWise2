@@ -9,6 +9,8 @@ import SwiftUI
 
 class MatchingViewModel: ObservableObject {
     
+    @ObservedObject var vm = AppViewModel.shared
+    
     var matchingQuestion: MatchingQuestion
     
     @Published var shuffledQuestions: [QuestionAnswerPair]
@@ -77,7 +79,6 @@ class MatchingViewModel: ObservableObject {
             }
         }
     }
-
     
     func checkMatch() {
          if let qID = selectedQuestionID, let aID = selectedAnswerID,
@@ -117,6 +118,10 @@ class MatchingViewModel: ObservableObject {
         if matchingQuestion.questions.allSatisfy({ $0.questionState == .isValid && $0.answerState == .isValid }) {
             gameState = .isValid
         }
+    }
+    
+    func markQuestionAsSolved() {
+        vm.markQuestionAsSolved(for: matchingQuestion.id)
     }
     
     func resetGame() {

@@ -11,7 +11,7 @@ class LifesManager : ObservableObject {
     
     static let shared = LifesManager()
     
-    @Published var lifesCount = 0
+    @Published var lifesCount = 5
     @Published var triggerModal : Bool = false
     
     var hasEnoughLifes : Bool { lifesCount > 0 }
@@ -28,3 +28,4 @@ class LifesManager : ObservableObject {
         lifesCount += count
     }
 }
+

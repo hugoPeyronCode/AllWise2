@@ -24,6 +24,7 @@ struct TopicButton: View {
         
     var body: some View {
             ZStack {
+                
                 CircularProgressView(progress: progress, color: color(), fontSize: .body, lineWidth: 8, withText: false)
                     .frame(height: 90)
                 

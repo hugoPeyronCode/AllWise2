@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SubTopicView: View {
     
-//    @EnvironmentObject var vm : AppViewModel
     @ObservedObject var vm = AppViewModel.shared
     @ObservedObject var lifesManager = LifesManager.shared
     
@@ -21,7 +20,6 @@ struct SubTopicView: View {
     
     var onComplete: (Bool) -> Void
     @State private var backToTopicView = false
-    
     @State private var disableAllView = false
     
     init(subTopic: SubTopic, onComplete: @escaping (Bool) -> Void) {
@@ -50,7 +48,11 @@ struct SubTopicView: View {
                                 )
                                 
                                } else if let matchingQuestion = localVM.currentQuestion as? MatchingQuestion {
-                                   MatchingView(matchingQuestion: matchingQuestion, result: $localVM.questionViewResult, action: localVM.moveToNextQuestion)
+                                   MatchingView(matchingQuestion: matchingQuestion, 
+                                                result: $localVM.questionViewResult,
+                                                checkResult: {localVM.checkResult(for: localVM.currentQuestion)},
+                                                moveToNextQuestion: localVM.moveToNextQuestion
+                                   )
                                }
                         }
                     }
@@ -185,7 +187,7 @@ struct SubTopicView: View {
     SubTopicView(subTopic: SubTopic(name: "1",
                                     questions:
                                         [
-                                            MatchingQuestion(questions: [], isSolved: false),
+                                            MatchingQuestion(questions: [], isSolved: true),
                                             QCMQuestion(question: "Question 1", image: "", explanation: "", answers: [
                                                 Answer(text: "Bonne réponse", isTrue: true),
                                                 Answer(text: "Mauvaise réponse", isTrue: false),
@@ -199,7 +201,7 @@ struct SubTopicView: View {
                                                 Answer(text: "Mauvaise réponse", isTrue: false),
                                                 Answer(text: "Mauvaise réponse", isTrue: false)
                                             ],
-                                                     isSolved: false)
+                                                     isSolved: true)
                                         ],
                                     isSolved: false), onComplete: {_ in })
     .environmentObject(AppViewModel())

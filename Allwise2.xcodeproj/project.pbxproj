@@ -173,6 +173,7 @@
 			children = (
 				433AEF972AFE633300449F10 /* Allwise2App.swift */,
 				4378D20F2B0CBAEF00736633 /* HomeView.swift */,
+				433AEFAE2AFE6B1300449F10 /* AppViewModel.swift */,
 				4351DF642B079ADE00D441E9 /* Extensions */,
 				433AEFB22AFE723900449F10 /* Components */,
 				433AEFA82AFE636900449F10 /* Core */,
@@ -217,7 +218,6 @@
 		433AEFAD2AFE6AFC00449F10 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				433AEFAE2AFE6B1300449F10 /* AppViewModel.swift */,
 				43DCEEBE2B062030007858EE /* LifesManager.swift */,
 				43057A752B062E6700292548 /* UserManager.swift */,
 			);

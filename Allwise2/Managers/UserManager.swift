@@ -18,7 +18,6 @@ class UserManager : ObservableObject {
     @Published var level : UserLevel = .Freshman
     @Published var image : String = "sadOwl"
     @Published var name : String = "Hugo"
-    
 }
 
 enum UserLevel : String, CaseIterable {

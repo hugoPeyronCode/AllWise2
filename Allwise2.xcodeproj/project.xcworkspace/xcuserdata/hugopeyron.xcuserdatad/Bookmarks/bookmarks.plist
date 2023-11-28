@@ -34,16 +34,16 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>    @Published var image : String = "sadOwl"
+				<string>    @Published var name : String = "Hugo"
 </string>
 				<key>leading</key>
-				<string>    @Published var xp : Int = 0
-    @Published var level : UserLevel = .Freshman
+				<string>    @Published var level : UserLevel = .Freshman
+    @Published var image : String = "sadOwl"
 </string>
 				<key>trailing</key>
-				<string>    @Published var name : String = "Hugo"
-    
-}
+				<string>}
+
+enum UserLevel : String, CaseIterable {
 </string>
 			</dict>
 			<key>type</key>
@@ -79,16 +79,16 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>    @Published var bestDayStreakCount = 0
+				<string>    @Published var xp : Int = 0
 </string>
 				<key>leading</key>
 				<string>    static let shared = UserManager()
-    
+    @Published var bestDayStreakCount = 0
 </string>
 				<key>trailing</key>
-				<string>    @Published var xp : Int = 0
-    @Published var level : UserLevel = .Freshman
+				<string>    @Published var level : UserLevel = .Freshman
     @Published var image : String = "sadOwl"
+    @Published var name : String = "Hugo"
 </string>
 			</dict>
 			<key>type</key>
@@ -124,16 +124,16 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>    @Published var xp : Int = 0
+				<string>    @Published var level : UserLevel = .Freshman
 </string>
 				<key>leading</key>
-				<string>    
-    @Published var bestDayStreakCount = 0
+				<string>    @Published var bestDayStreakCount = 0
+    @Published var xp : Int = 0
 </string>
 				<key>trailing</key>
-				<string>    @Published var level : UserLevel = .Freshman
-    @Published var image : String = "sadOwl"
+				<string>    @Published var image : String = "sadOwl"
     @Published var name : String = "Hugo"
+}
 </string>
 			</dict>
 			<key>type</key>
@@ -169,16 +169,16 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>    @Published var level : UserLevel = .Freshman
+				<string>    @Published var image : String = "sadOwl"
 </string>
 				<key>leading</key>
-				<string>    @Published var bestDayStreakCount = 0
-    @Published var xp : Int = 0
+				<string>    @Published var xp : Int = 0
+    @Published var level : UserLevel = .Freshman
 </string>
 				<key>trailing</key>
-				<string>    @Published var image : String = "sadOwl"
-    @Published var name : String = "Hugo"
-    
+				<string>    @Published var name : String = "Hugo"
+}
+
 </string>
 			</dict>
 			<key>type</key>
@@ -214,16 +214,16 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>    @Published var name : String = "Hugo"
+				<string>}
 </string>
 				<key>leading</key>
-				<string>    @Published var level : UserLevel = .Freshman
-    @Published var image : String = "sadOwl"
+				<string>    @Published var image : String = "sadOwl"
+    @Published var name : String = "Hugo"
 </string>
 				<key>trailing</key>
-				<string>    
-}
-
+				<string>
+enum UserLevel : String, CaseIterable {
+    case Freshman
 </string>
 			</dict>
 			<key>type</key>
