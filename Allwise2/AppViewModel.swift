@@ -118,24 +118,6 @@ class AppViewModel : ObservableObject {
         }
     }
     
-//    func updateTopicsState() {
-//         var foundFirstUnsolved = false
-//         
-//         for lessonIndex in lessons.indices {
-//             for topicIndex in lessons[lessonIndex].topics.indices {
-//                 if !foundFirstUnsolved && !lessons[lessonIndex].topics[topicIndex].isSolved {
-//                     // This is the first unsolved topic, mark it as current
-//                     lessons[lessonIndex].topics[topicIndex].state = .current
-//                     foundFirstUnsolved = true
-//                 } else {
-//                     // All other topics are marked as locked
-//                     lessons[lessonIndex].topics[topicIndex].state = foundFirstUnsolved ? .isLocked : .isValidated
-//                 }
-//             }
-//         }
-//     }
-//    
-    
     func makeFirstUnSolvedTopicStateToCurrent(lessonId: UUID) {
         if let lessonIndex = lessons.firstIndex(where: { $0.id == lessonId }) {
             var foundFirstUnsolved = false
