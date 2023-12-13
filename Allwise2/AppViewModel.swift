@@ -60,8 +60,6 @@ class AppViewModel : ObservableObject {
 
         return solvedQuestionsCount
     }
-
-    
     
     // SUBTOPICS
     
@@ -94,7 +92,6 @@ class AppViewModel : ObservableObject {
     }
     
     // TOPIC
-    
     // Computed property to get all topics from all lessons
     var topics: [Topic] {
         return lessons.flatMap { $0.topics }

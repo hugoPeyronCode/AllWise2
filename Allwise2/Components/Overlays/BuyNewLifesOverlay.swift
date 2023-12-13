@@ -22,6 +22,9 @@ struct BuyNewLifesOverlay: View {
     
     @State private var selectedItem : ItemSelected = .buyMonthlySub
     
+    @State var moveToSubsciptionShopView = false
+    @State var moveToRefillLifesShopView = false
+    
     var body: some View {
         VStack {
             Spacer()
@@ -35,7 +38,8 @@ struct BuyNewLifesOverlay: View {
                 GradientBorderButton(
                     isSelected: selectedItem == .buyMonthlySub,
                                     item: .buyMonthlySub,
-                                    action: { selectItem(.buyMonthlySub)
+                                    action: { 
+                                        selectItem(.buyMonthlySub)
                                     })
                   
                   GradientBorderButton(
@@ -45,8 +49,13 @@ struct BuyNewLifesOverlay: View {
                                        })
                                     
                 VStack{
-                    
-                        ContinueButton(content: content(), backgroundColor: .duoBlue, shadowGroundColor: .darkBlue, action: onContinueLearning)
+                        ContinueButton(content: 
+                                        content(),
+                                       backgroundColor: .duoBlue,
+                                       shadowGroundColor: .darkBlue) {
+                                moveToTheSelectShopView()
+                        }
+                                       
                     
                         Button("No thanks", action: onEndSession)
                             .bold()
@@ -61,6 +70,23 @@ struct BuyNewLifesOverlay: View {
             .foregroundStyle(.reverseWhite)
         }
         .transition(.move(edge: .bottom))
+        .fullScreenCover(isPresented: $moveToSubsciptionShopView) {
+            ShopView(productType:.subscription)
+                .environmentObject(StoreKitManager.shared)
+        }
+        .fullScreenCover(isPresented: $moveToRefillLifesShopView) {
+            ShopView(productType:.consumable)
+                .environmentObject(StoreKitManager.shared)
+        }
+    }
+    
+    func moveToTheSelectShopView() {
+        switch selectedItem {
+        case .buyMonthlySub:
+            moveToSubsciptionShopView = true
+        case .lifeRefill:
+            moveToRefillLifesShopView = true
+        }
     }
     
     func content() -> String {
@@ -86,16 +112,13 @@ struct BuyNewLifesOverlay: View {
 
 struct GradientBorderButton: View {
     
-    
-    let gradient = Gradient(colors: [.green, .blue, .purple, .pink])
+    let linearGradient = Constants.premiumLinearGradient
     
     let isSelected : Bool
     
     let item : ItemSelected
     
-    
     var action: () -> Void
-
     
     var body: some View {
             HStack {
@@ -110,13 +133,12 @@ struct GradientBorderButton: View {
                 Text(catchPhrase())
                     .font(.subheadline)
                     .bold()
-                    .foregroundStyle(LinearGradient(gradient: gradient, startPoint: .leading, endPoint: .trailing))
-
+                    .foregroundStyle(linearGradient)
             }
             .padding()
             .frame(maxWidth: .infinity)
             .background(RoundedRectangle(cornerRadius: 10) // Use the corner radius you want here
-                .stroke(isSelected ? LinearGradient(gradient: gradient, startPoint: .leading, endPoint: .trailing) : LinearGradient(gradient: Gradient(colors: [.gray.opacity(0.3), .gray.opacity(0.3)]), startPoint: .leading, endPoint: .trailing), lineWidth: 3))
+                .stroke(isSelected ? linearGradient : LinearGradient(gradient: Gradient(colors: [.gray.opacity(0.3), .gray.opacity(0.3)]), startPoint: .leading, endPoint: .trailing), lineWidth: 3))
             .padding()
             .onTapGesture {
                 withAnimation(.snappy){
@@ -131,7 +153,7 @@ struct GradientBorderButton: View {
             return ZStack {
                 Image(systemName: "heart.fill")
                     .font(.largeTitle)
-                    .foregroundStyle(LinearGradient(gradient: gradient, startPoint: .leading, endPoint: .trailing))
+                    .foregroundStyle(linearGradient)
                 Image(systemName: "infinity")
                     .font(.subheadline)
                     .foregroundStyle(.white)
@@ -141,7 +163,7 @@ struct GradientBorderButton: View {
             return ZStack {
                 Image(systemName: "heart")
                     .font(.largeTitle)
-                    .foregroundStyle(LinearGradient(gradient: gradient, startPoint: .leading, endPoint: .trailing))
+                    .foregroundStyle(linearGradient)
                 Image(systemName: "")
                     .font(.subheadline)
                     .foregroundStyle(.white)
@@ -158,7 +180,7 @@ struct GradientBorderButton: View {
             return "Refill your lifes"
         }
     }
-    
+
     func catchPhrase() -> String {
         switch item {
         case .buyMonthlySub:

@@ -89,7 +89,6 @@ struct HomeView: View {
                 .font(.system(.body, design: .rounded, weight: .black))
                 .foregroundStyle(.reverseWhite.opacity(0.4))
         }
-        
     }
     
     var LifesCounterView : some View {
