@@ -53,7 +53,7 @@ struct BuyNewLifesOverlay: View {
                                         content(),
                                        backgroundColor: .duoBlue,
                                        shadowGroundColor: .darkBlue) {
-                                moveToTheSelectShopView()
+                            LifesManager.shared.refillLifes(count: 5)
                         }
                                        
                     

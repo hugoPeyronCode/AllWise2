@@ -20,7 +20,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-            
+                
                 if lifesManager.triggerModal {
                     Color.duoWhite.opacity(0.3)
                         .ignoresSafeArea()

@@ -39,9 +39,9 @@ struct TopicsView: View {
                             .bold()
                             .foregroundStyle(color(topicState: topic.state))
                         
-                        RoundedRectangle(cornerRadius: 15)
-                            .frame(width: 10, height: 50)
-                            .foregroundStyle(color(topicState: topic.state))
+                            RoundedRectangle(cornerRadius: 15)
+                                .frame(width: 10, height: 50)
+                                .foregroundStyle(color(topicState: topic.state))
 
                     }
                     

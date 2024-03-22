@@ -34,10 +34,11 @@ class StoreKitManager : ObservableObject {
         self.updates?.cancel()
     }
     
-    var hasUnlockedPremium: Bool {
-//        print("has unlocked Premium")
-        return !self.purchasedProductIDs.isEmpty
-    }
+    var hasUnlockedPremium = true
+//    Bool {
+////        print("has unlocked Premium")
+//        return !self.purchasedProductIDs.isEmpty
+//    }
     
     func loadProducts() async throws {
         // If products already loaded do nothing
