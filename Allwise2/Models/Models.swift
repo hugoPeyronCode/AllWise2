@@ -73,3 +73,10 @@ enum TopicState : String {
     case isLocked = "isLocked"
     case isValidated = "isValidated"
 }
+
+
+/// V2
+struct Line {
+    var points = [CGPoint]()
+    var lineWidth: Double = 50.0
+}

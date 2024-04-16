@@ -25,6 +25,7 @@ struct ExerciceProgressBar: View {
     }
 }
 
+
 #Preview {
     ExerciceProgressBar(progress: .constant(8))
 }

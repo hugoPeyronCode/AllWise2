@@ -15,7 +15,9 @@ struct HomeView: View {
     @State private var navToUserDashboard : Bool = false
     @State private var navToSelectLessonView : Bool = false
     @State private var navToExercice1 : Bool = false
+    @State private var navToExercice4 : Bool = false
 
+    
     @State var selectedLessonID : UUID = AppViewModel.shared.lessons.first!.id
     
     var body: some View {
@@ -57,6 +59,9 @@ struct HomeView: View {
             }
             .navigationDestination(isPresented: $navToExercice1) {
                 MandalaExercice()
+            }
+            .navigationDestination(isPresented: $navToExercice4) {
+                PositiveAffirmationsExercice()
             }
             .toolbar{
                 
@@ -109,6 +114,14 @@ struct HomeView: View {
     var BottomButtons : some View {
         VStack {
             Spacer()
+            HStack {
+                SmallNavButton(icon: "scribble", text: "Positive Aff.", mainColor: .yellow) {
+                    navToExercice4.toggle()
+                }
+                .padding(.horizontal)
+                .padding(.top, 5)
+                Spacer()
+            }
             HStack {
                 SmallNavButton(icon: "figure.mind.and.body", text: "Meditation", mainColor: .blue) {
                     navToExercice1.toggle()
