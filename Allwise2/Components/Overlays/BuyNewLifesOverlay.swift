@@ -190,3 +190,8 @@ struct GradientBorderButton: View {
         }
     }
 }
+
+class Constants {
+    static let premiumGradient = Gradient(colors: [.green, .blue, .purple, .pink])
+    static let premiumLinearGradient =  LinearGradient(gradient: premiumGradient, startPoint: .leading, endPoint: .trailing)
+}
