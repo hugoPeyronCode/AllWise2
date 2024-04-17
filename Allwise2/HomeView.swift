@@ -15,8 +15,10 @@ struct HomeView: View {
     @State private var navToUserDashboard : Bool = false
     @State private var navToSelectLessonView : Bool = false
     @State private var navToExercice1 : Bool = false
+    @State private var navToExercice2 : Bool = false
+    @State private var navToExercice3 : Bool = false
     @State private var navToExercice4 : Bool = false
-
+    
     
     @State var selectedLessonID : UUID = AppViewModel.shared.lessons.first!.id
     
@@ -59,6 +61,12 @@ struct HomeView: View {
             }
             .navigationDestination(isPresented: $navToExercice1) {
                 MandalaExercice()
+            }
+            .navigationDestination(isPresented: $navToExercice2) {
+                LazyFitnessExercice()
+            }
+            .navigationDestination(isPresented: $navToExercice3) {
+                ManifestingExercice()
             }
             .navigationDestination(isPresented: $navToExercice4) {
                 PositiveAffirmationsExercice()
@@ -114,6 +122,22 @@ struct HomeView: View {
     var BottomButtons : some View {
         VStack {
             Spacer()
+            HStack {
+                SmallNavButton(icon: "figure.yoga", text: "Lazy Fitness", mainColor: .green) {
+                    navToExercice2.toggle()
+                }
+                .padding(.horizontal)
+                .padding(.top, 5)
+                Spacer()
+            }
+            HStack {
+                SmallNavButton(icon: "speaker.wave.2.bubble.fill", text: "Manifesting", mainColor: .red) {
+                    navToExercice3.toggle()
+                }
+                .padding(.horizontal)
+                .padding(.top, 5)
+                Spacer()
+            }
             HStack {
                 SmallNavButton(icon: "scribble", text: "Positive Aff.", mainColor: .yellow) {
                     navToExercice4.toggle()

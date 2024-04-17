@@ -19,7 +19,7 @@ struct ExerciceProgressBar: View {
 
                 Rectangle().frame(width: min(CGFloat(self.progress) * geometry.size.width, geometry.size.width), height: geometry.size.height)
                     .foregroundColor(Color(UIColor.systemGreen))
-                    .animation(.easeOut(duration: 0.5), value: progress)
+                    .animation(.easeOut(duration: 0.2), value: progress)
             }.cornerRadius(45.0)
         }.frame(height: 20)
     }
