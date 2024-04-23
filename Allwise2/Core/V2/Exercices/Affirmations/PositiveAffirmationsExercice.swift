@@ -29,7 +29,7 @@ struct PositiveAffirmationsExercice: View {
     @State var selectedAffirmations: [String] = []
     @State var revealedAffirmations: Set<Int> = []
     @State var progressBarFill: Double = 0.0
-    @State var showFinishButton = false
+    @State var isShowingFinishButton = false
     @State var animateButton = false
     let totalAffirmations = 5
     
@@ -38,77 +38,37 @@ struct PositiveAffirmationsExercice: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.white, Color.white]),
-                           startPoint: .top,
-                           endPoint: .bottom)
-            .edgesIgnoringSafeArea(.all)
+            
+            LinearBackground
+            
             VStack {
                 
-                HStack {
-                    ExerciceSubtitle(emoji: "🌞", subtitle: "POSITIVE AFFIRMATIONS", subtitleColor: Color(red: 255 / 255.0, green: 205 / 255.0, blue: 42 / 255.0))
-                        .padding([.top, .bottom], 20)
-                    Spacer()
-                }
-                Text("TAKE A MOMENT TO RECHARGE")
-                    .font(.subheadline)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color(red: 117 / 255.0, green: 117 / 255.0, blue: 117 / 255.0))
-                    .padding([.top, .bottom], 20)
-                
-                // Affirmations
-                ForEach(Array(selectedAffirmations.enumerated()), id: \.element) { index, affirmation in
-                                    ScratchCard(
-                                        affirmation: affirmation,
-                        index: index,
-                        revealedAffirmations: $revealedAffirmations,
-                        progress: $progressBarFill,
-                        total: CGFloat(totalAffirmations)
-                                    )                    .padding([.top, .bottom], 5)
-
-                }
-                // Finish Button
-                if showFinishButton {
-                    Button(action: {
-                        // Finishg button action
-                        print("Button clicked")
-                        dismiss()
-
-                    }) {
-                        HStack {
-                            Spacer()
-                            
-                            Text("Finish")
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color.black)
-                                .padding(10)
-                            
-                            Spacer()
-                        }
-                        .frame(maxWidth: .infinity)
-
-                        .background(Color("paleGray"))
-                        .cornerRadius(10)
-                        .scaleEffect(animateButton ? 1.1 : 1.0)
-                        .animation(.easeInOut(duration: 0.4), value: animateButton)
-                        
-                    }
-                    .padding([.top, .bottom], 20)
-                    .padding([.leading, .trailing], 20)
-
-                }
+                ExerciceTitle
                 
                 Spacer()
+                
+                Consigne
+                                
+                Affirmations
+                
+                Spacer()
+                
+                ContinueButton(content: "Continue", backgroundColor: isShowingFinishButton ? .green : .gray , shadowGroundColor: isShowingFinishButton ? .green.dark : .gray.dark) {
+                        print("Button clicked")
+                        dismiss()
+                }
+                
             }
             .padding([.leading, .trailing], 20)
             
             .onAppear {
                 progressBarFill = 0
                 selectedAffirmations = Array(affirmations.shuffled().prefix(totalAffirmations))
-
+                
             }
             .onChange(of: revealedAffirmations) { _ in
                 if revealedAffirmations.count == totalAffirmations {
-                    showFinishButton = true
+                    isShowingFinishButton = true
                     animateButton = true                        }
             }
         }
@@ -122,6 +82,44 @@ struct PositiveAffirmationsExercice: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
+    }
+}
+
+extension PositiveAffirmationsExercice {
+    
+    var LinearBackground : some View {
+        LinearGradient(gradient: Gradient(colors: [Color.white, Color.white]),
+                       startPoint: .top,
+                       endPoint: .bottom)
+        .edgesIgnoringSafeArea(.all)
+    }
+    
+    var ExerciceTitle : some View {
+        HStack {
+            ExerciceSubtitle(emoji: "🌞", subtitle: "POSITIVE AFFIRMATIONS", subtitleColor: Color(red: 255 / 255.0, green: 205 / 255.0, blue: 42 / 255.0))
+                .padding([.top, .bottom], 20)
+            Spacer()
+        }
+    }
+    
+    var Consigne : some View {
+        Text("TAKE A MOMENT TO RECHARGE")
+            .font(.subheadline)
+            .fontWeight(.bold)
+            .foregroundColor(Color(red: 117 / 255.0, green: 117 / 255.0, blue: 117 / 255.0))
+            .padding([.top, .bottom], 20)
+    }
+    
+    var Affirmations : some View {
+        ForEach(Array(selectedAffirmations.enumerated()), id: \.element) { index, affirmation in
+            ScratchCard(
+                affirmation: affirmation,
+                index: index,
+                revealedAffirmations: $revealedAffirmations,
+                progress: $progressBarFill,
+                total: CGFloat(totalAffirmations)
+            )
+        }
     }
     
     var XMark: some View {
@@ -143,3 +141,27 @@ struct PositiveAffirmationsExercice: View {
 #Preview {
     PositiveAffirmationsExercice()
 }
+
+// old button
+//Button {
+//print("Button clicked")
+//dismiss()
+//} label: {
+//HStack {
+//    Spacer()
+//    
+//    Text("Finish")
+//        .fontWeight(.semibold)
+//        .foregroundColor(Color.black)
+//        .padding(10)
+//    
+//    Spacer()
+//}
+//.frame(maxWidth: .infinity)
+//.background(Color("paleGray"))
+//.cornerRadius(10)
+//.scaleEffect(animateButton ? 1.1 : 1.0)
+//.animation(.easeInOut(duration: 0.4), value: animateButton)
+//}
+//.padding([.top, .bottom], 20)
+//.padding([.leading, .trailing], 20)

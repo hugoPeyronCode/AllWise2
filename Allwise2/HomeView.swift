@@ -19,7 +19,6 @@ struct HomeView: View {
     @State private var navToExercice3 : Bool = false
     @State private var navToExercice4 : Bool = false
     
-    
     @State var selectedLessonID : UUID = AppViewModel.shared.lessons.first!.id
     
     var body: some View {

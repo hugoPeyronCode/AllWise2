@@ -21,12 +21,12 @@ struct ScratchCard: View {
         ZStack {
             // Hidden content view (affirmation)
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color(red: 255 / 255.0, green: 205 / 255.0, blue: 42 / 255.0))
+                .fill(.thinMaterial)
                 .frame(maxWidth: .infinity, maxHeight: 70)
             
             // Scratchable overlay view
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color(red: 19 / 255.0, green: 174 / 255.0, blue: 92 / 255.0))
+                .fill(.gray.opacity(0.3))
                 .frame(maxWidth: .infinity, maxHeight: 70)
                 .overlay(
                     Text(affirmation)
