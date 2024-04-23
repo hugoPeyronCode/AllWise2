@@ -17,14 +17,11 @@ struct LazyFitnessExercice: View {
     private let handImages = ["hand_0", "hand_1", "hand_2", "hand_3", "hand_4"]
     
     @Environment(\.dismiss) private var dismiss
-
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.white, Color.white]),
-                           startPoint: .top,
-                           endPoint: .bottom)
-            .edgesIgnoringSafeArea(.all)
+            ColorGradients.white
+                .edgesIgnoringSafeArea(.all)
             VStack {
                 Text("Are you seated?")
                     .font(.title)
@@ -75,8 +72,6 @@ struct LazyFitnessExercice: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
-        
-        
     }
     
     func startImageDisplayTimer() {

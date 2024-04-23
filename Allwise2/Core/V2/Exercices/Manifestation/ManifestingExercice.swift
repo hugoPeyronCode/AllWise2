@@ -23,6 +23,7 @@ struct ManifestingExercice: View {
                     "I want to complete a marathon.",
                     "I want to achieve a better work-life balance.",
                     " I want to learn how to cook."]
+    
     @State private var exampleText = "I want to get that promotion."
     @State private var manifestationText = ""
     @State private var readyClicked = false
@@ -44,10 +45,9 @@ struct ManifestingExercice: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.white, Color.white]),
-                           startPoint: .top,
-                           endPoint: .bottom)
-            .edgesIgnoringSafeArea(.all)
+            ColorGradients.white
+                    .edgesIgnoringSafeArea(.all)
+            
             VStack {
                 
                 HStack {
@@ -107,7 +107,7 @@ struct ManifestingExercice: View {
                         
                         Spacer() // Pushes all content to the top
                     }
-                    .frame(maxHeight: 400)
+                    .frame(maxHeight: SizeConstants.height / 2 )
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 75)
                         .stroke(Color.paleGray, lineWidth: 2)

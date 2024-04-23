@@ -18,7 +18,7 @@ struct ContinueButton: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15)
-                .fill(shadowGroundColor)
+                .fill(shadowGroundColor.dark)
                 .frame(maxWidth: .infinity, maxHeight: 50)
                 .offset(y: offset) 
             

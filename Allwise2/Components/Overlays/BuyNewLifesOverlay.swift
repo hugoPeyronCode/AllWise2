@@ -112,7 +112,7 @@ struct BuyNewLifesOverlay: View {
 
 struct GradientBorderButton: View {
     
-    let linearGradient = Constants.premiumLinearGradient
+    let linearGradient = ColorGradients.premiumLinearGradient
     
     let isSelected : Bool
     
@@ -189,9 +189,4 @@ struct GradientBorderButton: View {
             return "ONE SHOT"
         }
     }
-}
-
-class Constants {
-    static let premiumGradient = Gradient(colors: [.green, .blue, .purple, .pink])
-    static let premiumLinearGradient =  LinearGradient(gradient: premiumGradient, startPoint: .leading, endPoint: .trailing)
 }
