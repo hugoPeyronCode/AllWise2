@@ -60,6 +60,10 @@
 		5073CA222BD91B0A009C709A /* MainProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5073CA212BD91B0A009C709A /* MainProgressBar.swift */; };
 		5073CA252BD9390F009C709A /* Consigne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5073CA242BD9390F009C709A /* Consigne.swift */; };
 		5073CA282BD939D0009C709A /* MeditationCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5073CA272BD939D0009C709A /* MeditationCanvasView.swift */; };
+		508F778B2BD94EB300FADABC /* rain1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 508F778A2BD94EB300FADABC /* rain1.mp4 */; };
+		508F778E2BD94FB600FADABC /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508F778D2BD94FB600FADABC /* VideoPlayerView.swift */; };
+		508F77902BD955F800FADABC /* rain2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 508F778F2BD955F800FADABC /* rain2.mp4 */; };
+		508F77932BD958AF00FADABC /* HeaderGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508F77922BD958AF00FADABC /* HeaderGradient.swift */; };
 		50F091672BCED8C200AF2C73 /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F091662BCED8C200AF2C73 /* BreathingView.swift */; };
 		50F0916B2BCEDA1300AF2C73 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F0916A2BCEDA1300AF2C73 /* Constants.swift */; };
 		CE3E9CAB2BCDCCB90080E6FF /* MandalaExercice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E9CAA2BCDCCB90080E6FF /* MandalaExercice.swift */; };
@@ -137,6 +141,10 @@
 		5073CA212BD91B0A009C709A /* MainProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProgressBar.swift; sourceTree = "<group>"; };
 		5073CA242BD9390F009C709A /* Consigne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consigne.swift; sourceTree = "<group>"; };
 		5073CA272BD939D0009C709A /* MeditationCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationCanvasView.swift; sourceTree = "<group>"; };
+		508F778A2BD94EB300FADABC /* rain1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = rain1.mp4; path = ../../../../../../../../../../Downloads/rain1.mp4; sourceTree = "<group>"; };
+		508F778D2BD94FB600FADABC /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		508F778F2BD955F800FADABC /* rain2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = rain2.mp4; path = ../../../../../../../../../../Downloads/rain2.mp4; sourceTree = "<group>"; };
+		508F77922BD958AF00FADABC /* HeaderGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderGradient.swift; sourceTree = "<group>"; };
 		50F091662BCED8C200AF2C73 /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
 		50F0916A2BCEDA1300AF2C73 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CE3E9CAA2BCDCCB90080E6FF /* MandalaExercice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MandalaExercice.swift; sourceTree = "<group>"; };
@@ -303,6 +311,8 @@
 		433AEFB22AFE723900449F10 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				508F77912BD9589400FADABC /* HeaderGradient */,
+				508F778C2BD94FAA00FADABC /* VideoPlayer */,
 				CE3E9CC12BCDE2800080E6FF /* V2 */,
 				4382423F2B04DCD800CC321C /* ResultView */,
 				4382423A2B04C1DA00CC321C /* ExtraViews */,
@@ -552,6 +562,31 @@
 			path = MeditationCanvasView;
 			sourceTree = "<group>";
 		};
+		508F77892BD94EA300FADABC /* Rain */ = {
+			isa = PBXGroup;
+			children = (
+				508F778A2BD94EB300FADABC /* rain1.mp4 */,
+				508F778F2BD955F800FADABC /* rain2.mp4 */,
+			);
+			path = Rain;
+			sourceTree = "<group>";
+		};
+		508F778C2BD94FAA00FADABC /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				508F778D2BD94FB600FADABC /* VideoPlayerView.swift */,
+			);
+			path = VideoPlayer;
+			sourceTree = "<group>";
+		};
+		508F77912BD9589400FADABC /* HeaderGradient */ = {
+			isa = PBXGroup;
+			children = (
+				508F77922BD958AF00FADABC /* HeaderGradient.swift */,
+			);
+			path = HeaderGradient;
+			sourceTree = "<group>";
+		};
 		50F091622BCED88C00AF2C73 /* Meditation */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,6 +689,7 @@
 		CE3E9CBE2BCDDF070080E6FF /* Videos */ = {
 			isa = PBXGroup;
 			children = (
+				508F77892BD94EA300FADABC /* Rain */,
 				CE3E9CC02BCDDF2D0080E6FF /* mandala_0.mp4 */,
 				CE3E9CBF2BCDDF2D0080E6FF /* mandala_1.mp4 */,
 			);
@@ -763,6 +799,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508F778B2BD94EB300FADABC /* rain1.mp4 in Resources */,
+				508F77902BD955F800FADABC /* rain2.mp4 in Resources */,
 				CE3E9CC72BCDF28C0080E6FF /* mandala_0.mp4 in Resources */,
 				CE3E9CB72BCDD2180080E6FF /* chill_2.mp3 in Resources */,
 				CE3E9CC82BCDF28F0080E6FF /* mandala_1.mp4 in Resources */,
@@ -818,8 +856,10 @@
 				4382423E2B04D76F00CC321C /* ResultView.swift in Sources */,
 				4347CEE52B03CE15004531B4 /* QuitQuestionViewOverlay.swift in Sources */,
 				433AEFB12AFE6B5800449F10 /* MockData.swift in Sources */,
+				508F778E2BD94FB600FADABC /* VideoPlayerView.swift in Sources */,
 				4378D2102B0CBAEF00736633 /* HomeView.swift in Sources */,
 				433AEFA72AFE635500449F10 /* Models.swift in Sources */,
+				508F77932BD958AF00FADABC /* HeaderGradient.swift in Sources */,
 				43B2652E2B1159C60014DC1B /* WhatYouCanAchieveView.swift in Sources */,
 				433AEFBB2AFE748C00449F10 /* SubTopicView.swift in Sources */,
 				43B2652C2B11543C0014DC1B /* SelfImprovementReasonsVie.swift in Sources */,

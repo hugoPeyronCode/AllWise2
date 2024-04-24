@@ -24,19 +24,15 @@ struct MandalaExercice: View {
 
     var body: some View {
         ZStack {
-            ColorGradients.white
-                .edgesIgnoringSafeArea(.all)
             
-            VStack {
+            // Here I would like to have a video looping in the background.
+            
+            VStack(alignment: .leading) {
                 HStack {
                     ExerciceSubtitle(emoji: "🧘", subtitle: "MEDITATION", subtitleColor: .green)
-                    Spacer()
                 }
-                Text("TAKE A MOMENT TO RECHARGE")
-                    .font(.subheadline)
-                    .fontWeight(.bold)
-                    .foregroundColor(.gray)
-                    .padding()
+                
+                Consigne(text: "Take a moment to recharge")
                 
                 GeometryReader { geometry in
                     VideoPlayer(player: player)

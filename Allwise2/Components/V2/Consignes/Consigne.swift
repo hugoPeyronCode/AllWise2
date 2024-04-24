@@ -15,7 +15,7 @@ struct Consigne: View {
         Text(text.uppercased())
             .font(.title2)
             .fontWeight(.bold)
-            .foregroundColor(.gray)
+            .foregroundColor(.primary)
             .fontDesign(.monospaced)
     }
 }

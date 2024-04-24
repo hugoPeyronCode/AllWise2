@@ -10,7 +10,18 @@ import SwiftUI
 struct CustomProgressBar: View {
     // The progress variable should be between 0 and 1
     var progress: Float
-
+    let color: Color
+    
+    init(progress: Float, color: Color) {
+        self.progress = progress
+        self.color = color
+    }
+    
+    init(progress: Float) {
+        self.progress = progress
+        self.color = .green
+    }
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
@@ -19,7 +30,7 @@ struct CustomProgressBar: View {
 
                 RoundedRectangle(cornerRadius: geometry.size.height / 2)
                     .frame(width: geometry.size.width * CGFloat(progress))
-                    .foregroundColor(Color.green) // Foreground indicating progress
+                    .foregroundColor(color) // Foreground indicating progress
                     .animation(.linear, value: progress)
             }
         }

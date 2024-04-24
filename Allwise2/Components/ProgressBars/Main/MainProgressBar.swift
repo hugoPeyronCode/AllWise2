@@ -12,19 +12,17 @@ struct MainProgressBar: View {
 
     let width = SizeConstants.mainProgressBarWidth
     let height = SizeConstants.mainProgressBarHeight
-    
-    @State var isShowingReset: Bool
-    
+        
     var body: some View {
         VStack(spacing: 0) {
             ZStack(alignment: .leading) {
                 Rectangle()
                     .frame(width: width, height: height)
-                    .foregroundStyle(.thinMaterial)
+                    .foregroundStyle(.ultraThinMaterial)
                 
                 Rectangle()
                     .frame(width: width * viewModel.progressValue, height: height)
-                    .foregroundStyle(.primary)
+                    .foregroundStyle(.primary.opacity(0.5))
                     .opacity(0.5)
 //
                 VStack {
@@ -41,27 +39,26 @@ struct MainProgressBar: View {
             .disabled(viewModel.progressValue >= 1.0)
             
             Rectangle()
-                .fill(.thinMaterial)
+                .fill(.ultraThinMaterial)
                 .frame(maxWidth: .infinity , maxHeight: SizeConstants.screenHeight)
                 .ignoresSafeArea()
                 .overlay {
-                    Text("Continue")
-                        .foregroundStyle(.gray)
+                    Button("Continue") {
+                        viewModel.incrementProgress()
+                    }
+                    .foregroundColor(.white)
+                    .bold()
                 }
                 .onTapGesture {
                     viewModel.incrementProgress()
                 }
-            if isShowingReset {
-                Button {
-                    viewModel.reset()
-                } label: {
-                    Text("reset")
-                }
-            }
         }
     }
 }
 
 #Preview {
-    MainProgressBar(viewModel: ProgressBarViewModel(), isShowingReset: true)
+        ZStack {
+            ReusableVideoPlayer(fileName: "rain1", fileType: "mp4")
+            MainProgressBar(viewModel: ProgressBarViewModel())
+        }
 }

@@ -13,24 +13,31 @@ struct MeditationView: View {
     @State private var innerCircleScaleEffect : CGFloat = 0.1
     @State private var rotationAngle: Double = 0
     @State private var topText = ""
-
-
+    
+    // Might use that later but now Generics does not allow to dynamically change the shapes in the view.
+//    let shapes : [any Shape] = [RoundedRectangle(cornerRadius: 150), Circle()]
     
     var body: some View {
         NavigationStack {
             ZStack {
-//                ColorGradients.white
-//                    .ignoresSafeArea()
+                
+                ReusableVideoPlayer(fileName: "rain2", fileType: "mp4")
+                    .scaledToFill()
+                    .ignoresSafeArea()
+                
+                HeaderGradient()
                 
                 VStack {
                     Header
                     
+                    CustomProgressBar(progress: 0.5, color: .blue)
+                        .shadow(color: .gray, radius: 3)
+                        .frame(width: SizeConstants.screenWidth / 2)
+                        .padding(.top)
+                    
                     Spacer()
                     
-                    Text("\(topText)")
-                        .padding(.bottom)
-                    
-                    MeditationCanvasView(shape: RoundedRectangle(cornerRadius: 150), innerCircleScaleEffect: innerCircleScaleEffect, rotationAngle: rotationAngle)
+                    MeditationCanvasView(shape: Circle(), innerCircleScaleEffect: innerCircleScaleEffect, rotationAngle: rotationAngle)
                         .onTapGesture {
                             growingInnerCircle()
                         }
@@ -40,12 +47,9 @@ struct MeditationView: View {
                     
                     Spacer()
                     
-                    MainProgressBar(viewModel: progressBarViewModel, isShowingReset: false)
+                    MainProgressBar(viewModel: progressBarViewModel)
                         .frame(height: SizeConstants.screenHeight * 0.1)
                     
-//                    ContinueButton(content: "Continue", backgroundColor: .gray, shadowGroundColor: .gray.dark) {
-//                        progressBarViewModel.incrementProgress()
-//                    }
                     .padding(.horizontal)
                     
                 }
@@ -63,7 +67,6 @@ extension MeditationView {
             Consigne(text: "Take a moment to recharge")
         }
         .padding()
-
     }
     
     var MeditationCanvas : some View {
@@ -80,11 +83,6 @@ extension MeditationView {
             Circle()
                 .fill(.thinMaterial)
                 .scaleEffect(innerCircleScaleEffect)
-            
-//            Text("FOCUS...")
-//                .fontWeight(.black)
-//                .fontDesign(.monospaced)
-//                .foregroundStyle(.white)
         }
         .frame(width: SizeConstants.screenWidth * 0.90)
     }
@@ -95,10 +93,8 @@ extension MeditationView {
         withAnimation(.snappy(duration: 15)) { // Smooth transition over 2 seconds
             if innerCircleScaleEffect >= 1 {
                 innerCircleScaleEffect = 0.1 // reset to initial small size
-                topText = "Shrinking"
             } else {
                 innerCircleScaleEffect = 1.1 // grow to full size
-                topText = "Growing"
             }
         }
     }

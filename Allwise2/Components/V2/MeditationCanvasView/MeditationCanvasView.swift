@@ -44,3 +44,7 @@ struct MeditationCanvasView<S: Shape>: View {
 #Preview {
     MeditationCanvasView(shape: RoundedRectangle(cornerRadius: 15), innerCircleScaleEffect: 1, rotationAngle: 360)
 }
+
+
+// Cool Shapes and settings
+// 

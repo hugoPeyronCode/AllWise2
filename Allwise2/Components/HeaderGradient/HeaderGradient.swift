@@ -9,7 +9,12 @@ import SwiftUI
 
 struct HeaderGradient: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            LinearGradient(colors: [.black.opacity(0.5), .clear], startPoint: .top, endPoint: .bottom)
+                .frame(height: SizeConstants.screenHeight * 0.3)
+            Spacer()
+        }
+        .ignoresSafeArea()
     }
 }
 
