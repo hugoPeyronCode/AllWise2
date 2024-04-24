@@ -14,17 +14,16 @@ struct MeditationView: View {
     @State private var rotationAngle: Double = 0
     @State private var topText = ""
     
-    // Might use that later but now Generics does not allow to dynamically change the shapes in the view.
-//    let shapes : [any Shape] = [RoundedRectangle(cornerRadius: 150), Circle()]
+    @State private var exerciceTime : Int = 30
     
     var body: some View {
         NavigationStack {
             ZStack {
                 
-                ReusableVideoPlayer(fileName: "rain2", fileType: "mp4")
+                ReusableVideoPlayer(fileName: "sea3", fileType: "mp4")
                     .scaledToFill()
                     .ignoresSafeArea()
-                
+                                
                 HeaderGradient()
                 
                 VStack {
@@ -37,7 +36,9 @@ struct MeditationView: View {
                     
                     Spacer()
                     
-                    MeditationCanvasView(shape: Circle(), innerCircleScaleEffect: innerCircleScaleEffect, rotationAngle: rotationAngle)
+                    // Cool shape to try:
+//                    RoundedRectangle(cornerRadius: 150)
+                    MeditationCanvasView(shape: Circle(), innerCircleScaleEffect: innerCircleScaleEffect, rotationAngle: rotationAngle, gradient: ColorGradients.radialGradient3)
                         .onTapGesture {
                             growingInnerCircle()
                         }
@@ -47,7 +48,7 @@ struct MeditationView: View {
                     
                     Spacer()
                     
-                    MainProgressBar(viewModel: progressBarViewModel)
+                    SessionProgressBar(viewModel: progressBarViewModel)
                         .frame(height: SizeConstants.screenHeight * 0.1)
                     
                     .padding(.horizontal)
@@ -90,7 +91,7 @@ extension MeditationView {
 
 extension MeditationView {
     func growingInnerCircle() {
-        withAnimation(.snappy(duration: 15)) { // Smooth transition over 2 seconds
+        withAnimation(.linear(duration: 15)) { // Smooth transition over 2 seconds
             if innerCircleScaleEffect >= 1 {
                 innerCircleScaleEffect = 0.1 // reset to initial small size
             } else {

@@ -18,6 +18,7 @@ struct ReusableVideoPlayer: View {
 
     var body: some View {
         VideoPlayer(player: player)
+            .disabled(true)
             .onAppear {
                 setupPlayer()
             }
@@ -35,6 +36,7 @@ struct ReusableVideoPlayer: View {
         }
         let playerItem = AVPlayerItem(url: url)
         player = AVPlayer(playerItem: playerItem)
+        player?.isMuted = true // Mute the audio
         player?.play()
         
         // Looping the video

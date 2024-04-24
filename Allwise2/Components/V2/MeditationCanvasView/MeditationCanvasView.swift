@@ -11,15 +11,9 @@ struct MeditationCanvasView<S: Shape>: View {
     let shape: S
     let innerCircleScaleEffect: CGFloat
     let rotationAngle: Double
+    let gradient: RadialGradient
     
     var body: some View {
-        
-        let gradient = RadialGradient(
-            gradient: Gradient(colors: [Color.blue.opacity(0.5), Color.blue]),
-            center: .center,
-            startRadius: 0,
-            endRadius: SizeConstants.screenWidth * 0.45
-        )
         
         ZStack {
             shape
@@ -42,7 +36,12 @@ struct MeditationCanvasView<S: Shape>: View {
 }
 
 #Preview {
-    MeditationCanvasView(shape: RoundedRectangle(cornerRadius: 15), innerCircleScaleEffect: 1, rotationAngle: 360)
+    ZStack {
+        ReusableVideoPlayer(fileName: "rain2", fileType: "mp4")
+            .scaledToFill()
+            .ignoresSafeArea()
+        MeditationCanvasView(shape: Circle(), innerCircleScaleEffect: 0, rotationAngle: 360, gradient: ColorGradients.radialGradient3)
+    }
 }
 
 
