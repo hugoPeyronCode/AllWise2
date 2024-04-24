@@ -18,9 +18,9 @@ struct ExerciceSubtitle: View {
                 .font(.largeTitle)
             Text(subtitle)
                 .foregroundColor(subtitleColor)
-                .font(.subheadline)
+                .font(.headline)
                 .fontWeight(.bold)
-
+                .fontDesign(.monospaced)
         }
     }
 }

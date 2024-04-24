@@ -55,6 +55,11 @@
 		43F2F45B2B0F654100BF28AD /* MatchingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F2F45A2B0F654100BF28AD /* MatchingButton.swift */; };
 		5024BDCC2BCECEE600297F4F /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5024BDCB2BCECEE600297F4F /* HapticManager.swift */; };
 		5024BDCF2BCECF1200297F4F /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5024BDCE2BCECF1200297F4F /* AudioPlayer.swift */; };
+		5073CA1B2BD91864009C709A /* MeditationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5073CA1A2BD91864009C709A /* MeditationView.swift */; };
+		5073CA202BD91AED009C709A /* MainProgressBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5073CA1F2BD91AED009C709A /* MainProgressBarViewModel.swift */; };
+		5073CA222BD91B0A009C709A /* MainProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5073CA212BD91B0A009C709A /* MainProgressBar.swift */; };
+		5073CA252BD9390F009C709A /* Consigne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5073CA242BD9390F009C709A /* Consigne.swift */; };
+		5073CA282BD939D0009C709A /* MeditationCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5073CA272BD939D0009C709A /* MeditationCanvasView.swift */; };
 		50F091672BCED8C200AF2C73 /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F091662BCED8C200AF2C73 /* BreathingView.swift */; };
 		50F0916B2BCEDA1300AF2C73 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F0916A2BCEDA1300AF2C73 /* Constants.swift */; };
 		CE3E9CAB2BCDCCB90080E6FF /* MandalaExercice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E9CAA2BCDCCB90080E6FF /* MandalaExercice.swift */; };
@@ -127,6 +132,11 @@
 		43F2F45A2B0F654100BF28AD /* MatchingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingButton.swift; sourceTree = "<group>"; };
 		5024BDCB2BCECEE600297F4F /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		5024BDCE2BCECF1200297F4F /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		5073CA1A2BD91864009C709A /* MeditationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationView.swift; sourceTree = "<group>"; };
+		5073CA1F2BD91AED009C709A /* MainProgressBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProgressBarViewModel.swift; sourceTree = "<group>"; };
+		5073CA212BD91B0A009C709A /* MainProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProgressBar.swift; sourceTree = "<group>"; };
+		5073CA242BD9390F009C709A /* Consigne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consigne.swift; sourceTree = "<group>"; };
+		5073CA272BD939D0009C709A /* MeditationCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationCanvasView.swift; sourceTree = "<group>"; };
 		50F091662BCED8C200AF2C73 /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
 		50F0916A2BCEDA1300AF2C73 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CE3E9CAA2BCDCCB90080E6FF /* MandalaExercice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MandalaExercice.swift; sourceTree = "<group>"; };
@@ -339,8 +349,9 @@
 		4347CEE32B03BCC7004531B4 /* ProgressBars */ = {
 			isa = PBXGroup;
 			children = (
-				4399F4F92AFE80E6007005B0 /* CircularProgressBar.swift */,
-				4399F4FD2AFE9434007005B0 /* CustomProgressBar.swift */,
+				5073CA1C2BD91A96009C709A /* Main */,
+				5073CA1E2BD91AC1009C709A /* Linear */,
+				5073CA1D2BD91A9D009C709A /* Circular */,
 			);
 			path = ProgressBars;
 			sourceTree = "<group>";
@@ -500,10 +511,52 @@
 			path = Medias;
 			sourceTree = "<group>";
 		};
+		5073CA1C2BD91A96009C709A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5073CA1F2BD91AED009C709A /* MainProgressBarViewModel.swift */,
+				5073CA212BD91B0A009C709A /* MainProgressBar.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		5073CA1D2BD91A9D009C709A /* Circular */ = {
+			isa = PBXGroup;
+			children = (
+				4399F4F92AFE80E6007005B0 /* CircularProgressBar.swift */,
+			);
+			path = Circular;
+			sourceTree = "<group>";
+		};
+		5073CA1E2BD91AC1009C709A /* Linear */ = {
+			isa = PBXGroup;
+			children = (
+				4399F4FD2AFE9434007005B0 /* CustomProgressBar.swift */,
+			);
+			path = Linear;
+			sourceTree = "<group>";
+		};
+		5073CA232BD93903009C709A /* Consignes */ = {
+			isa = PBXGroup;
+			children = (
+				5073CA242BD9390F009C709A /* Consigne.swift */,
+			);
+			path = Consignes;
+			sourceTree = "<group>";
+		};
+		5073CA262BD939BE009C709A /* MeditationCanvasView */ = {
+			isa = PBXGroup;
+			children = (
+				5073CA272BD939D0009C709A /* MeditationCanvasView.swift */,
+			);
+			path = MeditationCanvasView;
+			sourceTree = "<group>";
+		};
 		50F091622BCED88C00AF2C73 /* Meditation */ = {
 			isa = PBXGroup;
 			children = (
 				CE3E9CAA2BCDCCB90080E6FF /* MandalaExercice.swift */,
+				5073CA1A2BD91864009C709A /* MeditationView.swift */,
 			);
 			path = Meditation;
 			sourceTree = "<group>";
@@ -610,6 +663,8 @@
 		CE3E9CC12BCDE2800080E6FF /* V2 */ = {
 			isa = PBXGroup;
 			children = (
+				5073CA262BD939BE009C709A /* MeditationCanvasView */,
+				5073CA232BD93903009C709A /* Consignes */,
 				CE3E9CC22BCDE29B0080E6FF /* ExercicesViews */,
 			);
 			path = V2;
@@ -732,12 +787,14 @@
 				43057A742B062DC600292548 /* UserDashboardView.swift in Sources */,
 				CEB8B0AD2BD05E6900DFE913 /* ManifestingExercice.swift in Sources */,
 				CE3E9CC62BCDE83C0080E6FF /* ExerciceProgressBar.swift in Sources */,
+				5073CA282BD939D0009C709A /* MeditationCanvasView.swift in Sources */,
 				433AEFB52AFE724900449F10 /* TopicButton.swift in Sources */,
 				438242452B04E11500CC321C /* ContinueButton.swift in Sources */,
 				43B265302B11637B0014DC1B /* Transitions.swift in Sources */,
 				43B265282B111D450014DC1B /* GeneralKnowledgeLevelView.swift in Sources */,
 				4351DF662B079AE800D441E9 /* ColorsExtensions.swift in Sources */,
 				CE3E9CC42BCDE2C00080E6FF /* ExerciceSubtitle.swift in Sources */,
+				5073CA1B2BD91864009C709A /* MeditationView.swift in Sources */,
 				4378D2122B0CBED300736633 /* ResultOverlayViewModel.swift in Sources */,
 				CE3E9CBD2BCDD6930080E6FF /* MandalaManager.swift in Sources */,
 				5024BDCF2BCECF1200297F4F /* AudioPlayer.swift in Sources */,
@@ -746,6 +803,7 @@
 				43C6BBB92B050391003134C2 /* BuyNewLifesOverlay.swift in Sources */,
 				43F2F45B2B0F654100BF28AD /* MatchingButton.swift in Sources */,
 				43F2F4592B0E6DB000BF28AD /* MatchView.swift in Sources */,
+				5073CA222BD91B0A009C709A /* MainProgressBar.swift in Sources */,
 				5024BDCC2BCECEE600297F4F /* HapticManager.swift in Sources */,
 				433AEFAF2AFE6B1300449F10 /* AppViewModel.swift in Sources */,
 				4347CEDF2B03BC37004531B4 /* ValidationButton.swift in Sources */,
@@ -769,8 +827,10 @@
 				43030A5D2AFFC66900E4CA6B /* SubTopicViewModel.swift in Sources */,
 				432A05542B1784660055185B /* ShopView.swift in Sources */,
 				43057A762B062E6700292548 /* UserManager.swift in Sources */,
+				5073CA252BD9390F009C709A /* Consigne.swift in Sources */,
 				CEB8B0AB2BD0588900DFE913 /* LazyFitnessExercice.swift in Sources */,
 				43030A622AFFDE1600E4CA6B /* QuestionViewModel.swift in Sources */,
+				5073CA202BD91AED009C709A /* MainProgressBarViewModel.swift in Sources */,
 				CE3E9CCA2BCF19B90080E6FF /* PositiveAffirmationsExercice.swift in Sources */,
 				CEB8B0A62BCF271200DFE913 /* ScratchCard.swift in Sources */,
 				433AEFB92AFE730B00449F10 /* TopicsViewViewModel.swift in Sources */,

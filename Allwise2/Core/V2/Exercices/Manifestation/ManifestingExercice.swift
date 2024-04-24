@@ -107,7 +107,7 @@ struct ManifestingExercice: View {
                         
                         Spacer() // Pushes all content to the top
                     }
-                    .frame(maxHeight: SizeConstants.height / 2 )
+                    .frame(maxHeight: SizeConstants.screenHeight / 2 )
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 75)
                         .stroke(Color.paleGray, lineWidth: 2)

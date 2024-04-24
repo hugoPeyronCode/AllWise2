@@ -24,21 +24,20 @@ struct MandalaExercice: View {
 
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color.white, Color.white]),
-                           startPoint: .top,
-                           endPoint: .bottom)
+            ColorGradients.white
                 .edgesIgnoringSafeArea(.all)
+            
             VStack {
                 HStack {
-                    ExerciceSubtitle(emoji: "🧘", subtitle: "MEDITATION", subtitleColor: Color(red: 19 / 255.0, green: 174 / 255.0, blue: 92 / 255.0))
-                        .padding([.top, .bottom], 20)
+                    ExerciceSubtitle(emoji: "🧘", subtitle: "MEDITATION", subtitleColor: .green)
                     Spacer()
                 }
                 Text("TAKE A MOMENT TO RECHARGE")
                     .font(.subheadline)
                     .fontWeight(.bold)
-                    .foregroundColor(Color(red: 117 / 255.0, green: 117 / 255.0, blue: 117 / 255.0))
-                    .padding([.top, .bottom], 20)
+                    .foregroundColor(.gray)
+                    .padding()
+                
                 GeometryReader { geometry in
                     VideoPlayer(player: player)
                         .aspectRatio(contentMode: .fill)

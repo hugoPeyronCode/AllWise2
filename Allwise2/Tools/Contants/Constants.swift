@@ -9,13 +9,22 @@ import Foundation
 import SwiftUI
 
 struct SizeConstants {
-    static var height: CGFloat {
+    static var screenHeight: CGFloat {
         UIScreen.main.bounds.height
     }
-    static var width: CGFloat {
+    static var screenWidth: CGFloat {
         UIScreen.main.bounds.width
     }
+    
+    static var mainProgressBarWidth: CGFloat {
+        UIScreen.main.bounds.width
+    }
+    
+    static var mainProgressBarHeight: CGFloat {
+        UIScreen.main.bounds.height * 0.05
+    }
 }
+
 
 struct ColorGradients {
     static let premiumGradient = Gradient(colors: [.green, .blue, .purple, .pink])

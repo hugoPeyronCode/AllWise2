@@ -32,7 +32,6 @@ struct ContinueButton: View {
                 .clipShape(RoundedRectangle(cornerRadius: 15))
                 .offset(y: -offset)
         }
-        .padding()
         .contentShape(RoundedRectangle(cornerRadius: 15))
         .gesture(
             DragGesture(minimumDistance: 0)
