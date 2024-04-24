@@ -31,13 +31,13 @@ struct MeditationCanvasView<S: Shape>: View {
                 .scaleEffect(innerCircleScaleEffect)
         }
         .rotationEffect(.degrees(rotationAngle))
-        .frame(width: SizeConstants.screenWidth * 0.90, height: SizeConstants.screenWidth * 0.90)
+        .frame(width: SizeConstants.screenWidth * 0.80, height: SizeConstants.screenWidth * 0.80)
     }
 }
 
 #Preview {
     ZStack {
-        ReusableVideoPlayer(fileName: "rain2", fileType: "mp4")
+        ReusableVideoPlayer(fileName: .constant("rain1"), fileType: "mp4")
             .scaledToFill()
             .ignoresSafeArea()
         MeditationCanvasView(shape: Circle(), innerCircleScaleEffect: 0, rotationAngle: 360, gradient: ColorGradients.radialGradient3)

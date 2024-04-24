@@ -11,7 +11,7 @@ import SwiftUI
 import AVKit
 
 struct ReusableVideoPlayer: View {
-    var fileName: String
+    @Binding var fileName: String
     var fileType: String
     
     @State private var player: AVPlayer?
@@ -25,6 +25,9 @@ struct ReusableVideoPlayer: View {
             .onDisappear {
                 player?.pause()
                 player = nil // Release the player when view disappears
+            }
+            .onChange(of: fileName) { _ in
+                setupPlayer()  // Re-setup the player when fileName changes
             }
             .edgesIgnoringSafeArea(.all)
     }
@@ -53,7 +56,7 @@ struct ReusableVideoPlayer: View {
 
 struct ReusableVideoPlayer_Previews: PreviewProvider {
     static var previews: some View {
-        ReusableVideoPlayer(fileName: "rain1", fileType: "mp4")
+        ReusableVideoPlayer(fileName: .constant("rain1"), fileType: "mp4")
             .ignoresSafeArea()
             .scaledToFill()
     }

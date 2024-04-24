@@ -58,7 +58,7 @@ struct SessionProgressBar: View {
 
 #Preview {
         ZStack {
-            ReusableVideoPlayer(fileName: "rain1", fileType: "mp4")
+            ReusableVideoPlayer(fileName:.constant("rain1"), fileType: "mp4")
             SessionProgressBar(viewModel: ProgressBarViewModel())
         }
 }

@@ -73,6 +73,7 @@
 		508F77A92BD9677F00FADABC /* sea2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 508F77A82BD9677F00FADABC /* sea2.mp4 */; };
 		508F77AB2BD967DE00FADABC /* sea3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 508F77AA2BD967DE00FADABC /* sea3.mp4 */; };
 		508F77AD2BD9682E00FADABC /* sea4.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 508F77AC2BD9682E00FADABC /* sea4.mp4 */; };
+		508F77AF2BD96A4A00FADABC /* sea5.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 508F77AE2BD96A4900FADABC /* sea5.mp4 */; };
 		50F091672BCED8C200AF2C73 /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F091662BCED8C200AF2C73 /* BreathingView.swift */; };
 		50F0916B2BCEDA1300AF2C73 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F0916A2BCEDA1300AF2C73 /* Constants.swift */; };
 		CE3E9CAB2BCDCCB90080E6FF /* MandalaExercice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3E9CAA2BCDCCB90080E6FF /* MandalaExercice.swift */; };
@@ -163,6 +164,7 @@
 		508F77A82BD9677F00FADABC /* sea2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = sea2.mp4; path = ../../../../../../../../../../Downloads/sea2.mp4; sourceTree = "<group>"; };
 		508F77AA2BD967DE00FADABC /* sea3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = sea3.mp4; path = ../../../../../../../../../../Downloads/sea3.mp4; sourceTree = "<group>"; };
 		508F77AC2BD9682E00FADABC /* sea4.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = sea4.mp4; path = ../../../../../../../../../../Downloads/sea4.mp4; sourceTree = "<group>"; };
+		508F77AE2BD96A4900FADABC /* sea5.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = sea5.mp4; path = ../../../../../../../../../../Downloads/sea5.mp4; sourceTree = "<group>"; };
 		50F091662BCED8C200AF2C73 /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
 		50F0916A2BCEDA1300AF2C73 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CE3E9CAA2BCDCCB90080E6FF /* MandalaExercice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MandalaExercice.swift; sourceTree = "<group>"; };
@@ -592,6 +594,7 @@
 				508F77A82BD9677F00FADABC /* sea2.mp4 */,
 				508F77AA2BD967DE00FADABC /* sea3.mp4 */,
 				508F77AC2BD9682E00FADABC /* sea4.mp4 */,
+				508F77AE2BD96A4900FADABC /* sea5.mp4 */,
 			);
 			path = Nature;
 			sourceTree = "<group>";
@@ -836,6 +839,7 @@
 			files = (
 				508F778B2BD94EB300FADABC /* rain1.mp4 in Resources */,
 				508F77902BD955F800FADABC /* rain2.mp4 in Resources */,
+				508F77AF2BD96A4A00FADABC /* sea5.mp4 in Resources */,
 				CE3E9CC72BCDF28C0080E6FF /* mandala_0.mp4 in Resources */,
 				508F779B2BD9657E00FADABC /* rain4.mp4 in Resources */,
 				CE3E9CB72BCDD2180080E6FF /* chill_2.mp3 in Resources */,
@@ -1062,7 +1066,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Allwise2/Preview Content\"";
-				DEVELOPMENT_TEAM = C5T9JF3LX7;
+				DEVELOPMENT_TEAM = YA24P24868;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Allwise;
@@ -1094,7 +1098,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Allwise2/Preview Content\"";
-				DEVELOPMENT_TEAM = C5T9JF3LX7;
+				DEVELOPMENT_TEAM = YA24P24868;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Allwise;

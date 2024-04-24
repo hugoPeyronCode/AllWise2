@@ -16,29 +16,57 @@ struct MeditationView: View {
     
     @State private var exerciceTime : Int = 30
     
+    @State var videos : [String] = ["city1", "city2", "cloud1", "rain1", "rain2", "rain3", "rain4", "sea1", "sea2", "sea3", "sea4", "sea5", "sea6" ]
+    
+    @State private var counter = 0
+    
     var body: some View {
         NavigationStack {
             ZStack {
                 
-                ReusableVideoPlayer(fileName: "sea3", fileType: "mp4")
+                ReusableVideoPlayer(fileName: $videos[counter], fileType: "mp4")
                     .scaledToFill()
                     .ignoresSafeArea()
-                                
+                
+                Color.black.opacity(0.1)
+                    .ignoresSafeArea()
+                
                 HeaderGradient()
                 
                 VStack {
                     Header
                     
                     CustomProgressBar(progress: 0.5, color: .blue)
-                        .shadow(color: .gray, radius: 3)
                         .frame(width: SizeConstants.screenWidth / 2)
                         .padding(.top)
+                    
+                    HStack {
+                        Button {
+                            if counter > 0 {
+                                counter -= 1
+                            }
+                        } label: {
+                            Image(systemName: "arrow.left")
+                        }
+                        Button {
+                            if counter < videos.count - 1 {
+                                counter += 1
+                            }
+                        } label: {
+                            Image(systemName: "arrow.right")
+                        }
+                    }
+                    .padding()
+                    .font(.title)
+                    .fontWeight(.black)
+                    .foregroundStyle(.white)
+
                     
                     Spacer()
                     
                     // Cool shape to try:
 //                    RoundedRectangle(cornerRadius: 150)
-                    MeditationCanvasView(shape: Circle(), innerCircleScaleEffect: innerCircleScaleEffect, rotationAngle: rotationAngle, gradient: ColorGradients.radialGradient3)
+                    MeditationCanvasView(shape: RoundedRectangle(cornerRadius: 150), innerCircleScaleEffect: innerCircleScaleEffect, rotationAngle: rotationAngle, gradient: ColorGradients.radialGradient3)
                         .onTapGesture {
                             growingInnerCircle()
                         }
@@ -48,10 +76,10 @@ struct MeditationView: View {
                     
                     Spacer()
                     
-                    SessionProgressBar(viewModel: progressBarViewModel)
-                        .frame(height: SizeConstants.screenHeight * 0.1)
-                    
-                    .padding(.horizontal)
+//                    SessionProgressBar(viewModel: progressBarViewModel)
+//                        .frame(height: SizeConstants.screenHeight * 0.1)
+//                    
+//                    .padding(.horizontal)
                     
                 }
             }
