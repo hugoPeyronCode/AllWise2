@@ -27,7 +27,9 @@ struct SessionProgressBar: View {
                     .blur(radius: 5, opaque: true)
                     .ignoresSafeArea()
                 
-                TriggerButton
+                if isShowingTriggerButton {
+                    TriggerButton
+                }
                 
                 VStack {
                     
@@ -50,34 +52,20 @@ struct SessionProgressBar: View {
                             }
                         }
                     }
-                    .gesture(
-                        DragGesture()
-                            .updating($dragOffset, body: { (value, state, _) in
-                                state = value.translation
-                            })
-                            .onEnded({ value in
-                                if value.translation.height > 40 { // Checks if drag is downwards
-                                    // Animation to reset the progress bar position
-                                    withAnimation {
-                                        sessionProgressBarOffset = 120
-                                        isShowingTriggerButton = true
-                                    }
-                                }
-                            })
-                    )
                 }
                 .offset(y: sessionProgressBarOffset)
                 .ignoresSafeArea()
                 
             }
-//            .onTapGesture {
-//                viewModel.incrementProgress()
-//            }
+            .onTapGesture {
+                withAnimation {
+                    sessionProgressBarOffset = 120
+                    isShowingTriggerButton = true
+            }            }
             .disabled(viewModel.progressValue >= 1.0)
             .offset(y: sessionProgressBarOffset)
     }
 }
-
 
 extension SessionProgressBar {
     var TriggerButton : some View {
@@ -90,10 +78,13 @@ extension SessionProgressBar {
                 }
             }
         } label: {
-            RoundedRectangle(cornerRadius: 150)
-                .frame(width: 100, height: 10)
+            Image(systemName: "chevron.up")
+                .font(.largeTitle)
+                .fontWeight(.black)
+//            RoundedRectangle(cornerRadius: 150)
+//                .frame(width: 100, height: 10)
         }
-        .foregroundStyle(isShowingTriggerButton ? .white : .clear)
+        .foregroundStyle(.thinMaterial)
         .offset(y: sessionProgressBarOffset * -1)
     }
 }
