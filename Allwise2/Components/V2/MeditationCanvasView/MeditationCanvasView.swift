@@ -17,17 +17,17 @@ struct MeditationCanvasView<S: Shape>: View {
         
         ZStack {
             shape
-                .fill(gradient)
+                .fill(.gray.opacity(0.1))
             
-            ForEach(0 ..< 5) { item in
+            ForEach(0 ..< 7) { item in
                 shape
-                    .stroke(lineWidth: 15)
-                    .fill(.ultraThinMaterial)
-                    .scaleEffect(CGFloat(item) * 0.25)
+                    .stroke(lineWidth: 10)
+                    .fill(.white.opacity(0.7))
+                    .scaleEffect(CGFloat(item) * 0.15)
             }
             
             shape
-                .fill(.thinMaterial)
+                .fill(.ultraThinMaterial)
                 .scaleEffect(innerCircleScaleEffect)
         }
         .rotationEffect(.degrees(rotationAngle))
@@ -40,7 +40,7 @@ struct MeditationCanvasView<S: Shape>: View {
         ReusableVideoPlayer(fileName: .constant("rain1"), fileType: "mp4")
             .scaledToFill()
             .ignoresSafeArea()
-        MeditationCanvasView(shape: Circle(), innerCircleScaleEffect: 0, rotationAngle: 360, gradient: ColorGradients.radialGradient3)
+        MeditationCanvasView(shape: RoundedRectangle(cornerRadius: 15), innerCircleScaleEffect: 0, rotationAngle: 360, gradient: ColorGradients.radialGradient3)
     }
 }
 

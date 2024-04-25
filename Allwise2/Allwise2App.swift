@@ -15,7 +15,7 @@ struct Allwise2App: App {
     var body: some Scene {
         WindowGroup {
             
-            MeditationView(progressBarViewModel: ProgressBarViewModel())
+            MeditationView(viewModel: MeditationViewModel(), progressBarViewModel: SessionProgressBarViewModel())
 //            HomeView()
 //                .fullScreenCover(isPresented: $isShowingOnboarding) {
 //                    OnboardingView()                        
