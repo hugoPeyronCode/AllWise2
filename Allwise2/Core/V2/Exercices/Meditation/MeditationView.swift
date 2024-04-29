@@ -76,10 +76,10 @@ struct MeditationView: View {
                     
                     Spacer()
                     
-//                    SessionProgressBar(viewModel: progressBarViewModel)
-//                        .frame(height: SizeConstants.screenHeight * 0.1)
-//                    
-//                    .padding(.horizontal)
+                   SessionProgressBar(viewModel: progressBarViewModel)
+                       .frame(height: SizeConstants.screenHeight * 0.1)
+
+                    .padding(.horizontal)
                     
                 }
             }
