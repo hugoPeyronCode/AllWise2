@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-class ProgressBarViewModel: ObservableObject {
+class SessionProgressBarViewModel: ObservableObject {
     let tasks = ["Breathe", "Meditate", "Manifest", "Journal", "Reflect"]
     let icons = ["circle.circle", "figure.mind.and.body", "figure.mixed.cardio", "text.book.closed.fill", "quote.bubble" ]
     private let incrementDuration = 6.0 // seconds for simplicity, adjust as needed
