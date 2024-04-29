@@ -14,9 +14,11 @@ struct Allwise2App: App {
     
     var body: some Scene {
         WindowGroup {
+            
+            //MeditationView(progressBarViewModel: ProgressBarViewModel())
             HomeView()
                 .fullScreenCover(isPresented: $isShowingOnboarding) {
-                    OnboardingView()                        
+                    OnboardingView()
                         .onDisappear {
                             isShowingOnboarding = false
                         }
